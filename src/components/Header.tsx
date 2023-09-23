@@ -3,25 +3,24 @@ import React from "react"
 import { Text } from "./Text"
 import { Row } from "./Flex"
 import SizedBox from "./SizeBox"
-
 import add from "../assets/icons/Add.svg"
 
 const Icon = styled.div`
   width: 48px;
   height: 48px;
-  flex-shrink: 0;
-  stroke-width: 2px;
-  stroke: #000;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+ 
 `
 const Add = styled(Icon)`
-  background: url(${add}) center no-repeat;
+  background: url(${add});
 `
 interface IProps {}
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+  display: flex;
+  padding: 10px 10px 40px 10px;
+  align-items: flex-start;
 `
 
 const Header: React.FC<IProps> = () => {
@@ -36,6 +35,10 @@ const Header: React.FC<IProps> = () => {
       font-weight: 400;
       font-family: Open Sans;
     `
+     const Rt = styled(Row)`
+       justify-content: space-between;
+       align-items: center;
+     `
 
 
     return (
@@ -43,10 +46,10 @@ const Header: React.FC<IProps> = () => {
         <Title>Project name</Title>
         <SizedBox height={24} />
 
-        <Row>
+        <Rt>
           <SubTitile>Add new column</SubTitile>
           <Add />
-        </Row>
+        </Rt>
       </Root>
     )
    
