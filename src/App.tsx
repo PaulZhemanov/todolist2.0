@@ -1,26 +1,68 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import "./App.css"
+import styled from "@emotion/styled"
+import { Column } from "./components/Flex"
+import TodoList from "./components/Todolist"
+import SizedBox from "./components/SizeBox"
+import Header from "./components/Header"
+
+const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 1440px;
+  min-height: 100vh;
+  padding-bottom: 0;
+  justify-content: flex-start;
+  flex-shrink: 0;
+
+  // border: 10px solid #574ef1;
+  // background: 313131;
+`
+
+const Body = styled.div`
+  display: flex;
+  flex-direction: row;
+
+  align-items: stretch;
+  justify-content: stretch;
+  width: 100%;
+  max-height: 1024px;
+  height: 100%;
+  padding: 18px;
+  flex: 1;
+  box-sizing: border-box;
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Root>
+      <Header />
+      <SizedBox height={60} />
+
+      <Body>
+        <Column style={{ flex: 1 }} mainAxisSize="stretch" crossAxisSize="max">
+          <TodoList style={{ height: 270 }} />
+        </Column>{" "}
+        <SizedBox width={22} />
+        <Column style={{ flex: 1 }} mainAxisSize="stretch" crossAxisSize="max">
+          <TodoList style={{ height: 270 }} />
+        </Column>{" "}
+        <SizedBox width={22} />
+        <Column style={{ flex: 1 }} mainAxisSize="stretch" crossAxisSize="max">
+          <TodoList style={{ height: 270 }} />
+        </Column>{" "}
+        <SizedBox width={22} />
+        <Column style={{ flex: 1 }} mainAxisSize="stretch" crossAxisSize="max">
+          <TodoList style={{ height: 270 }} />
+        </Column>
+        <Column style={{ flex: 1 }} mainAxisSize="stretch" crossAxisSize="max">
+          <TodoList style={{ height: 270 }} />
+        </Column>
+      </Body>
+    </Root>
+  )
 }
 
-export default App;
+export default App
