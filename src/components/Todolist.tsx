@@ -6,8 +6,7 @@ import bin from "../assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import Task from "./Task"
 
-const Icon = styled.div``
-const Bin = styled(Icon)`
+const Bin = styled.div`
   background: url(${bin});
   width: 25px;
   height: 25px;
@@ -23,13 +22,23 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   padding: 25px 25px 40px 25px;
-  width: 423px;
-  height: 100vh;
+  /* width: 423px; */
+  /* height: 100vh; */
   background: #f3f5f6;
   flex: 1;
   justify-content: start;
   /* align-items: center; */
   width: 100%;
+   
+  &  .remove-todolist-button{
+    display: none;
+  }
+
+  :hover{
+    &  .remove-todolist-button{
+    display: block;
+    }
+  }
 `
 
 const Title = styled(Text)`
@@ -44,6 +53,24 @@ const HeaderContainer = styled.div`
   align-items: center;
 `
 
+const TasksContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100%;
+  border: 1px solid #dadada;
+  /* align-items: center; */
+
+  & > * {
+    margin-bottom: 20px;
+  }
+
+  & > :last-child{
+    margin-bottom: 0;
+  }
+`
+
+
 const TodoList: React.FC<IProps> = () => {
   // const StyledRow = styled(Row)`
 
@@ -51,16 +78,16 @@ const TodoList: React.FC<IProps> = () => {
   return (
     <Root>
       {/* <StyledRow> */}
-      <div style={{ display: 'flex', justifyContent: "space-between", alignItems: 'center' }}>
+      <HeaderContainer>
         <Title>Frontend</Title>
-        <Bin />
-      </div>
-      <SizedBox height={20} />
-      <Task />
-      <SizedBox height={20} />
-      <Task style={{ width: 200 }} />
-      <SizedBox height={20} />
-      <Task />
+        <Bin className="remove-todolist-button" />
+      </HeaderContainer>
+      <SizedBox height={10} />
+      <TasksContainer>
+        <Task />
+        <Task />
+        <Task />
+      </TasksContainer>
     </Root>
   )
 }

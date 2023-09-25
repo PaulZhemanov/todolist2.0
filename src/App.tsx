@@ -9,9 +9,10 @@ import Header from "./components/Header"
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 52px 100px;
+  padding: 52px 0;
   box-sizing: border-box;
   height: 100vh;
+  align-items: center;
   background: #106c4e;
 `
 
@@ -19,18 +20,17 @@ const Body = styled.div`
   display: flex;
   justify-content: space-between;
   height: 100vh;
-  padding: 10px;
+  padding: 0 10px;
   flex: 1; 
+  min-width: 980px;
+  max-width: 1280px;
   /* box-sizing: border-box; */
-  background: #ba7412;
 `
 
 function App() {
   return (
     <Root>
       <Header />
-      <SizedBox height={60} />
-
       <Body>
         {/* <Column>
           <TodoList style={{ height: "100vh" }} />
@@ -51,10 +51,6 @@ function App() {
         <Column>
           <TodoList style={{ height: "100vh" }} />
         </Column> */}
-        <TodoList />
-        <SizedBox width={10} />
-        <TodoList />
-        <SizedBox width={10} />
         <TodoList />
         <SizedBox width={10} />
         <TodoList />
