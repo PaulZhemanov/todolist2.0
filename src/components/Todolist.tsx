@@ -4,9 +4,7 @@ import { Text } from "./Text"
 import { Row } from "./Flex"
 import bin from "../assets/icons/Bin.svg"
 
-const Icon = styled.div`
-  
-`
+const Icon = styled.div``
 const Bin = styled(Icon)`
   background: url(${bin});
   width: 25px;
@@ -23,33 +21,31 @@ interface IProps {
 }
 
 const Root = styled.div`
-  padding: 25px 25px 40px 25px;
   display: flex;
   flex-direction: row;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
+  padding: 25px 25px 40px 25px;
+  width: 423px;
+  height: 100vh;
   background: #f3f5f6;
 `
 
-const TodoList: React.FC<IProps> = ({style}) => {
-
+const TodoList: React.FC<IProps> = ({ style }) => {
   const Title = styled(Text)`
     font-size: 28px;
     font-weight: 600;
     opacity: 0.8;
   `
-  const Rt = styled(Row)`
+  const StyledRow = styled(Row)`
     justify-content: space-between;
     align-items: center;
+    width: 373px;
   `
   return (
     <Root style={style}>
-      <Rt>
+      <StyledRow>
         <Title>Frontend</Title>
         <Bin />
-      </Rt>
-     
+      </StyledRow>
     </Root>
   )
 }
