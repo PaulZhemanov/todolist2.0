@@ -47,8 +47,8 @@ const TodoList: React.FC<IProps> = () => {
       <Title>Frontend</Title>
       <Bin />
       <SizedBox height={20} />
-      <Task />
       <SizedBox height={20} />
+      <Task />
       <Task />
       {/* <SizedBox height={20} />
       <Task />
