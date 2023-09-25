@@ -10,7 +10,7 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   padding: 52px 100px;
-  height: 100vh;
+  min-height: 100vh;
   background: #106c4e;
 `
 
@@ -19,7 +19,7 @@ const Body = styled.div`
   justify-content: space-between;
   height: 100vh;
   padding: 10px;
-  /* flex: 1;  */
+  flex: 1; 
   /* box-sizing: border-box; */
   background: #ba7412;
 `
