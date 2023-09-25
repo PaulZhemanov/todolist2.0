@@ -10,7 +10,8 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   padding: 52px 100px;
-  min-height: 100vh;
+  box-sizing: border-box;
+  height: 100vh;
   background: #106c4e;
 `
 

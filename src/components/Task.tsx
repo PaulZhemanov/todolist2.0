@@ -38,13 +38,13 @@ const Body = styled.div`
   box-shadow: 0px 10px 0px 0px rgba(0, 0, 0, 0.15);
 `
 
-const Task: React.FC<IProps> = () => {
+const Task: React.FC<IProps> = ({ style }) => {
   const TaskTitle = styled(Text)`
     font-size: 20px;
     font-weight: 700;
     text-transform: uppercase;
   `
-    
+
   const Description = styled(Text)`
     font-size: 16px;
     font-weight: 400;
@@ -52,16 +52,16 @@ const Task: React.FC<IProps> = () => {
   // const StyledRow = styled(Row)`
 
   // `
-    return (
-      <Root>
-        <Body>
-          <TaskTitle>TASK TITLE</TaskTitle>
-          
-          <SizedBox height={10} />
-          <Description>TASK DESCRIPTION</Description>
-          <SizedBox height={40} />
-        </Body>
-      </Root>
-    )
+  return (
+    <Root style={style}>
+      <Body>
+        <TaskTitle>TASK TITLE</TaskTitle>
+
+        <SizedBox height={10} />
+        <Description>TASK DESCRIPTION</Description>
+        <SizedBox height={40} />
+      </Body>
+    </Root>
+  )
 }
 export default Task
