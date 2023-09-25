@@ -19,6 +19,7 @@ const Root = styled.div`
   flex-direction: column;
   padding: 10px 10px 40px 10px;
   align-items: flex-start;
+  background: #3612ba;
 `
 
 const Header: React.FC<IProps> = () => {

@@ -3,6 +3,7 @@ import React from "react"
 import { Text } from "./Text"
 import { Row } from "./Flex"
 import bin from "../assets/icons/Bin.svg"
+import SizedBox from "./SizeBox"
 
 const Icon = styled.div``
 const Bin = styled(Icon)`
@@ -22,30 +23,32 @@ interface IProps {
 
 const Root = styled.div`
   display: flex;
-  flex-direction: row;
   padding: 25px 25px 40px 25px;
   width: 423px;
   height: 100vh;
   background: #f3f5f6;
+  flex:1;
 `
 
-const TodoList: React.FC<IProps> = ({ style }) => {
+const TodoList: React.FC<IProps> = () => {
   const Title = styled(Text)`
     font-size: 28px;
     font-weight: 600;
     opacity: 0.8;
+    
   `
   const StyledRow = styled(Row)`
     justify-content: space-between;
     align-items: center;
-    width: 373px;
+    width: 100%;
   `
   return (
-    <Root style={style}>
+    <Root>
       <StyledRow>
         <Title>Frontend</Title>
         <Bin />
       </StyledRow>
+      <SizedBox width={10} />
     </Root>
   )
 }
