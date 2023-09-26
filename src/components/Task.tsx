@@ -4,12 +4,19 @@ import { Text } from "./Text"
 import { Row } from "./Flex"
 import bin from "../assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
+import check from "../assets/icons/Check.svg"
+import { Tag } from "./Tag"
 
-const Icon = styled.div``
-const Bin = styled(Icon)`
+const Bin = styled.div`
   background: url(${bin});
   width: 25px;
   height: 25px;
+`
+const Check = styled.div`
+  background: url(${check});
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
 `
 
 interface IProps {
@@ -18,9 +25,8 @@ interface IProps {
   bodyStyle?: React.CSSProperties
 }
 const Root = styled.div`
-  display: inline-flex;
+  display: flex;
 `
-
 
 const Body = styled.div`
   display: inline-flex;
@@ -44,24 +50,33 @@ const Task: React.FC<IProps> = () => {
     font-weight: 700;
     text-transform: uppercase;
   `
-    
+
   const Description = styled(Text)`
     font-size: 16px;
     font-weight: 400;
   `
-  // const StyledRow = styled(Row)`
+  const StyledRow = styled(Row)`
+    justify-content: space-between;
+    align-items: center;
+  `
+     
 
-  // `
-    return (
-      <Root>
-        <Body>
-          <TaskTitle>TASK TITLE</TaskTitle>
-          
-          <SizedBox height={10} />
-          <Description>TASK DESCRIPTION</Description>
-          <SizedBox height={40} />
-        </Body>
-      </Root>
-    )
+  return (
+    <Root>
+      <Body>
+        <StyledRow>
+          <TaskTitle>task title</TaskTitle>
+          <Bin />
+        </StyledRow>
+        <SizedBox height={10} />
+        <Description>task description</Description>
+        <SizedBox height={40} />
+        <StyledRow>
+          <Tag>Critical</Tag>
+          <Check />
+        </StyledRow>
+      </Body>
+    </Root>
+  )
 }
 export default Task

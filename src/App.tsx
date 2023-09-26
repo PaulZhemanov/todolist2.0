@@ -17,7 +17,6 @@ const Root = styled.div`
 const Body = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 100vh;
   padding: 10px;
   flex: 1; 
   /* box-sizing: border-box; */

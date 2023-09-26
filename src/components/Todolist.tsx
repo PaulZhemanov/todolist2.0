@@ -27,7 +27,7 @@ const Root = styled.div`
   height: 100vh;
   background: #f3f5f6;
   flex: 1;
-  justify-content: space-between;
+  justify-content: start;
   /* align-items: center; */
   width: 100%;
 `
@@ -38,24 +38,25 @@ const TodoList: React.FC<IProps> = () => {
     font-weight: 600;
     opacity: 0.8;
   `
-  // const StyledRow = styled(Row)`
-
-  // `
+  const StyledRow = styled(Row)`
+    justify-content: space-between;
+    align-items: center;
+  `
   return (
     <Root>
-      {/* <StyledRow> */}
-      <Title>Frontend</Title>
-      <Bin />
-      <SizedBox height={20} />
+      <StyledRow>
+        <Title>Frontend</Title>
+        <Bin />
+      </StyledRow>
       <SizedBox height={20} />
       <Task />
+      <SizedBox height={20} />
       <Task />
       {/* <SizedBox height={20} />
       <Task />
       <SizedBox height={20} />
       <Task />
       <SizedBox height={20} /> */}
-      {/* </StyledRow> */}
     </Root>
   )
 }
