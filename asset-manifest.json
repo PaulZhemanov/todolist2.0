@@ -1,17 +1,21 @@
 {
   "files": {
-    "main.css": "/todolist2.0/static/css/main.d07be2f5.css",
-    "main.js": "/todolist2.0/static/js/main.6886dc5e.js",
+    "main.css": "/todolist2.0/static/css/main.30da1d74.css",
+    "main.js": "/todolist2.0/static/js/main.405a151a.js",
     "static/js/787.cc0aa48e.chunk.js": "/todolist2.0/static/js/787.cc0aa48e.chunk.js",
-    "static/media/Bin.svg": "/todolist2.0/static/media/Bin.87fb07583c7c27304ca7a168bb7f6900.svg",
+    "static/media/OpenSans-Bold.ttf": "/todolist2.0/static/media/OpenSans-Bold.45847e90261782dc01a6.ttf",
+    "static/media/OpenSans-Regular.ttf": "/todolist2.0/static/media/OpenSans-Regular.9a6cfa5890d7f3eef585.ttf",
+    "static/media/OpenSans-SemiBold.ttf": "/todolist2.0/static/media/OpenSans-SemiBold.dcf2e322dbaa037ca821.ttf",
     "index.html": "/todolist2.0/index.html",
+    "static/media/Bin.svg": "/todolist2.0/static/media/Bin.d8f86e3a4add8b7f3423cb3547c39bb4.svg",
     "static/media/Add.svg": "/todolist2.0/static/media/Add.9ef0207731272d8542610322ebf077ce.svg",
-    "main.d07be2f5.css.map": "/todolist2.0/static/css/main.d07be2f5.css.map",
-    "main.6886dc5e.js.map": "/todolist2.0/static/js/main.6886dc5e.js.map",
+    "static/media/Check.svg": "/todolist2.0/static/media/Check.085aa0d9358a2a58c74ee798a1b8d1dc.svg",
+    "main.30da1d74.css.map": "/todolist2.0/static/css/main.30da1d74.css.map",
+    "main.405a151a.js.map": "/todolist2.0/static/js/main.405a151a.js.map",
     "787.cc0aa48e.chunk.js.map": "/todolist2.0/static/js/787.cc0aa48e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d07be2f5.css",
-    "static/js/main.6886dc5e.js"
+    "static/css/main.30da1d74.css",
+    "static/js/main.405a151a.js"
   ]
 }
