@@ -13,7 +13,7 @@ const Root = styled.div`
   box-sizing: border-box;
   height: 100vh;
   align-items: center;
-  background: #106c4e;
+  /* background: #106c4e; */
 `
 
 const Body = styled.div`

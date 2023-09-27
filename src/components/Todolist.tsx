@@ -25,7 +25,7 @@ const Root = styled.div`
   /* width: 423px; */
   /* height: 100vh; */
   background: #f3f5f6;
-  flex: 1;
+  /* flex: 1; */
   justify-content: space-between;
   /* align-items: center; */
   width: 100%;
@@ -54,9 +54,10 @@ const HeaderContainer = styled.div`
 `
 
 const TasksContainer = styled.div`
-  display: flex;
+  display: inline-flex;
+  justify-content: start;
   flex-direction: column;
-  align-items: stretch;
+  align-items: start;
   height: 100%;
   border: 1px solid #dadada;
   /* align-items: center; */

@@ -15,7 +15,7 @@ interface IProps {
 
 
 const Root = styled.div`
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   padding: 20px;
   width: 423px;
@@ -23,7 +23,6 @@ const Root = styled.div`
   background: #f3f5f6;
   /* flex: 1; */
   /* align-items: center; */
-  width: 100%;
 
   border-radius: 12px;
   background: #fff;
