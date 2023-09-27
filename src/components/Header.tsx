@@ -5,7 +5,7 @@ import { Row } from "./Flex"
 import SizedBox from "./SizeBox"
 import add from "../assets/icons/Add.svg"
 
-interface IProps { }
+interface IProps {}
 
 const Icon = styled.div`
   width: 48px;
@@ -20,26 +20,24 @@ const Root = styled.div`
   flex-direction: column;
   padding: 0 10px 40px 10px;
   align-items: flex-start;
-  /* background: #3612ba; */
   min-width: 980px;
   max-width: 1280px;
 `
 const Title = styled(Text)`
-    font-size: 64px;
-    font-weight: 700;
-  `
+  font-size: 64px;
+  font-weight: 700;
+`
 const SubTitile = styled(Text)`
-    font-size: 40px;
-    font-weight: 400;
-  `
+  font-size: 40px;
+  font-weight: 400;
+`
 const StyledRow = styled(Row)`
-    justify-content: flex-start;
-    align-items: center;
-    gap: 24px;
-  `
+  justify-content: flex-start;
+  align-items: center;
+  gap: 24px;
+`
 
 const Header: React.FC<IProps> = () => {
-
   return (
     <Root>
       <Title>Project name</Title>
