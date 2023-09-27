@@ -5,6 +5,7 @@ import bin from "../assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import check from "../assets/icons/Check.svg"
 import {Tag} from "./Tag"
+import { Row } from "./Flex"
 
 interface IProps {
     align?: "row" | "column"
@@ -42,36 +43,34 @@ const Check = styled.div`
 `
 
 const TaskTitle = styled(Text)`
-    font-size: 20px;
-    font-weight: 700;
-    text-transform: uppercase;
-  `
+  font-size: 20px;
+  font-weight: 700;
+  text-transform: uppercase;
+`
 
 const Description = styled(Text)`
-    font-size: 16px;
-    font-weight: 400;
-  `
+  font-size: 16px;
+  font-weight: 400;
+`
 const StyledRow = styled(Row)`
-    justify-content: space-between;
-    align-items: center;
-  `
+  justify-content: space-between;
+  align-items: center;
+`
 
 
 const Task: React.FC<IProps> = ({...props}) =>
     <Root {...props}>
-        <Body>
-            <StyledRow>
-                <TaskTitle>task title</TaskTitle>
-                <Bin/>
-            </StyledRow>
-            <SizedBox height={10}/>
-            <Description>task description</Description>
-            <SizedBox height={40}/>
-            <StyledRow>
-                <Tag>Critical</Tag>
-                <Check/>
-            </StyledRow>
-        </Body>
+        <StyledRow>
+            <TaskTitle>task title</TaskTitle>
+            <Bin/>
+        </StyledRow>
+        <SizedBox height={10}/>
+        <Description>task description</Description>
+        <SizedBox height={40}/>
+        <StyledRow>
+            <Tag>Critical</Tag>
+            <Check/>
+        </StyledRow>
     </Root>
 
 export default Task
