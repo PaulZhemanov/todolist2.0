@@ -1,7 +1,6 @@
 import styled from "@emotion/styled"
-import React from "react"
+import React, { ChangeEvent, useState } from "react"
 import { Text } from "./Text"
-import { Row } from "./Flex"
 import bin from "../assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import Task from "./Task"
@@ -37,7 +36,7 @@ const Root = styled.div`
   }
 `
 
-const Title = styled(Text)`
+const TodoListTitle = styled(Text)`
   font-size: 28px;
   font-weight: 600;
   opacity: 0.8;
@@ -66,10 +65,34 @@ const TasksContainer = styled.div`
 `
 
 const TodoList: React.FC<IProps> = () => {
+  const [todolistTitle, setTodolistTitle] = useState("Frontend")
+  const [editing, setEditing] = useState(false)
+
+  const handleTodolistTitleClick = () => {
+    setEditing(true)
+  }
+
+  const handleTodolistTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTodolistTitle(event?.target.value)
+  }
+  const handleTodolistTitleFix = () => {
+    setEditing(false)
+  }
+
   return (
     <Root>
       <HeaderContainer>
-        <Title>Frontend</Title>
+        {editing ? (
+          <input
+            type="text"
+            value={todolistTitle}
+            onChange={handleTodolistTitleChange}
+            onBlur={handleTodolistTitleFix}
+          />
+        ) : (
+          <TodoListTitle onClick={handleTodolistTitleClick}> {todolistTitle}</TodoListTitle>
+        )}
+
         <Bin className="remove-todolist-button" />
       </HeaderContainer>
       <SizedBox height={10} />

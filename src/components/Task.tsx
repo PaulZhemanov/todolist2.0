@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React from "react"
+import React, { ChangeEvent, useState } from "react"
 import { Text } from "./Text"
 import bin from "../assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
@@ -64,20 +64,44 @@ const StyledRow = styled(Row)`
   align-items: center;
 `
 
-const Task: React.FC<IProps> = ({ ...props }) => (
-  <Root {...props}>
-    <StyledRow>
-      <TaskTitle>task title</TaskTitle>
-      <Bin className="remove-task-button" />
-    </StyledRow>
-    <SizedBox height={10} />
-    <Description>task description</Description>
-    <SizedBox height={40} />
-    <StyledRow>
-      <Tag>Critical</Tag>
-      <Check className="check-button" />
-    </StyledRow>
-  </Root>
-)
+const Task: React.FC<IProps> = ({ ...props }) => {
+  const [taskTitle, setTaskTitle] = useState("enter task title")
+  const [editing, setEditing] = useState(false)
+
+  const handleTaskTitleClick = () => {
+    setEditing(true)
+  }
+
+  const handleTaskTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTaskTitle(event?.target.value)
+  }
+  const handleTaskTitleFix = () => {
+    setEditing(false)
+  }
+  return (
+    <Root {...props}>
+      <StyledRow>
+        {editing ? (
+          <input
+            type="text"
+            value={taskTitle}
+            onChange={handleTaskTitleChange}
+            onBlur={handleTaskTitleFix}
+          />
+        ) : (
+          <TaskTitle onClick={handleTaskTitleClick}>{taskTitle}</TaskTitle>
+        )}
+        <Bin className="remove-task-button" />
+      </StyledRow>
+      <SizedBox height={10} />
+      <Description>task description</Description>
+      <SizedBox height={40} />
+      <StyledRow>
+        <Tag>Critical</Tag>
+        <Check className="check-button" />
+      </StyledRow>
+    </Root>
+  )
+}
 
 export default Task
