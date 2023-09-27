@@ -9,57 +9,53 @@ import Header from "./components/Header"
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 52px 0;
   box-sizing: border-box;
-  max-width: 100%;
-  min-width: 1440px;
-  min-height: 100vh;
-  padding-bottom: 0;
-  justify-content: flex-start;
-  flex-shrink: 0;
-
-  // border: 10px solid #574ef1;
-  // background: 313131;
+  height: 100vh;
+  align-items: center;
+  background: #106c4e;
 `
 
 const Body = styled.div`
   display: flex;
-  flex-direction: row;
-
-  align-items: stretch;
-  justify-content: stretch;
-  width: 100%;
-  max-height: 1024px;
-  height: 100%;
-  padding: 18px;
-  flex: 1;
-  box-sizing: border-box;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 0 10px;
+  flex: 1; 
+  min-width: 980px;
+  max-width: 1280px;
+  /* box-sizing: border-box; */
 `
 
 function App() {
   return (
     <Root>
       <Header />
-      <SizedBox height={60} />
-
       <Body>
-        <Column style={{ flex: 1 }} mainAxisSize="stretch" crossAxisSize="max">
-          <TodoList style={{ height: 270 }} />
+        {/* <Column>
+          <TodoList style={{ height: "100vh" }} />
         </Column>{" "}
-        <SizedBox width={22} />
-        <Column style={{ flex: 1 }} mainAxisSize="stretch" crossAxisSize="max">
-          <TodoList style={{ height: 270 }} />
+        <SizedBox width={10} />
+        <Column>
+          <TodoList style={{ height: "100vh" }} />
         </Column>{" "}
-        <SizedBox width={22} />
-        <Column style={{ flex: 1 }} mainAxisSize="stretch" crossAxisSize="max">
-          <TodoList style={{ height: 270 }} />
+        <SizedBox width={10} />
+        <Column>
+          <TodoList style={{ height: "100vh" }} />
         </Column>{" "}
-        <SizedBox width={22} />
-        <Column style={{ flex: 1 }} mainAxisSize="stretch" crossAxisSize="max">
-          <TodoList style={{ height: 270 }} />
+        <SizedBox width={10} />
+        <Column>
+          <TodoList style={{ height: "100vh" }} />
         </Column>
-        <Column style={{ flex: 1 }} mainAxisSize="stretch" crossAxisSize="max">
-          <TodoList style={{ height: 270 }} />
-        </Column>
+        <SizedBox width={10} />
+        <Column>
+          <TodoList style={{ height: "100vh" }} />
+        </Column> */}
+        <TodoList />
+        <SizedBox width={10} />
+        <TodoList />
+        <SizedBox width={10} />
+        <TodoList />
       </Body>
     </Root>
   )
