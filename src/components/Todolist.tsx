@@ -26,7 +26,7 @@ const Root = styled.div`
   /* height: 100vh; */
   background: #f3f5f6;
   flex: 1;
-  justify-content: start;
+  justify-content: space-between;
   /* align-items: center; */
   width: 100%;
    
