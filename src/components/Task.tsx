@@ -1,32 +1,40 @@
 import styled from "@emotion/styled"
 import React from "react"
-import {Text} from "./Text"
+import { Text } from "./Text"
 import bin from "../assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import check from "../assets/icons/Check.svg"
-import {Tag} from "./Tag"
+import { Tag } from "./Tag"
 import { Row } from "./Flex"
 
 interface IProps {
-    align?: "row" | "column"
-    style?: React.CSSProperties
-    bodyStyle?: React.CSSProperties
+  align?: "row" | "column"
+  style?: React.CSSProperties
+  bodyStyle?: React.CSSProperties
 }
-
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
   width: 423px;
-  /* height: 100vh; */
   background: #f3f5f6;
-  /* flex: 1; */
-  /* align-items: center; */
 
   border-radius: 12px;
   background: #fff;
   box-shadow: 0px 10px 0px 0px rgba(0, 0, 0, 0.15);
+
+  & .remove-task-button,
+  & .check-button {
+    display: none;
+  }
+
+  :hover {
+    & .remove-task-button,
+    & .check-button {
+      display: block;
+    }
+  }
 `
 
 const Bin = styled.div`
@@ -56,20 +64,20 @@ const StyledRow = styled(Row)`
   align-items: center;
 `
 
-
-const Task: React.FC<IProps> = ({...props}) =>
-    <Root {...props}>
-        <StyledRow>
-            <TaskTitle>task title</TaskTitle>
-            <Bin/>
-        </StyledRow>
-        <SizedBox height={10}/>
-        <Description>task description</Description>
-        <SizedBox height={40}/>
-        <StyledRow>
-            <Tag>Critical</Tag>
-            <Check/>
-        </StyledRow>
-    </Root>
+const Task: React.FC<IProps> = ({ ...props }) => (
+  <Root {...props}>
+    <StyledRow>
+      <TaskTitle>task title</TaskTitle>
+      <Bin className="remove-task-button" />
+    </StyledRow>
+    <SizedBox height={10} />
+    <Description>task description</Description>
+    <SizedBox height={40} />
+    <StyledRow>
+      <Tag>Critical</Tag>
+      <Check className="check-button" />
+    </StyledRow>
+  </Root>
+)
 
 export default Task

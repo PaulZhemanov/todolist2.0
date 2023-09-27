@@ -22,30 +22,26 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   padding: 25px 25px 40px 25px;
-  /* width: 423px; */
-  /* height: 100vh; */
   background: #f3f5f6;
-  /* flex: 1; */
   justify-content: space-between;
-  /* align-items: center; */
   width: 100%;
-   
-  &  .remove-todolist-button{
+
+  & .remove-todolist-button {
     display: none;
   }
 
-  :hover{
-    &  .remove-todolist-button{
-    display: block;
+  :hover {
+    & .remove-todolist-button {
+      display: block;
     }
   }
 `
 
 const Title = styled(Text)`
-    font-size: 28px;
-    font-weight: 600;
-    opacity: 0.8;
-  `
+  font-size: 28px;
+  font-weight: 600;
+  opacity: 0.8;
+`
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -59,26 +55,19 @@ const TasksContainer = styled.div`
   flex-direction: column;
   align-items: start;
   height: 100%;
-  border: 1px solid #dadada;
-  /* align-items: center; */
 
   & > * {
     margin-bottom: 20px;
   }
 
-  & > :last-child{
+  & > :last-child {
     margin-bottom: 0;
   }
 `
 
-
 const TodoList: React.FC<IProps> = () => {
-  // const StyledRow = styled(Row)`
-
-  // `
   return (
     <Root>
-      {/* <StyledRow> */}
       <HeaderContainer>
         <Title>Frontend</Title>
         <Bin className="remove-todolist-button" />
