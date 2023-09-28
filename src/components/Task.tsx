@@ -54,6 +54,14 @@ const TaskTitle = styled(Text)`
   font-weight: 700;
   text-transform: uppercase;
 `
+const EditableTaskTitle = styled.input`
+  font-size: 28px;
+  font-weight: 600;
+  opacity: 0.8;
+  border: none;
+  outline: none;
+  background: transparent;
+`
 
 const Description = styled(Text)`
   font-size: 16px;
@@ -82,7 +90,7 @@ const Task: React.FC<IProps> = ({ ...props }) => {
     <Root {...props}>
       <StyledRow>
         {editing ? (
-          <input
+          <EditableTaskTitle
             type="text"
             value={taskTitle}
             onChange={handleTaskTitleChange}

@@ -41,6 +41,14 @@ const TodoListTitle = styled(Text)`
   font-weight: 600;
   opacity: 0.8;
 `
+const EditableTodoListTitle = styled.input`
+  font-size: 28px;
+  font-weight: 600;
+  opacity: 0.8;
+  border: none;
+  outline: none;
+  background: transparent;
+`
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -83,14 +91,17 @@ const TodoList: React.FC<IProps> = () => {
     <Root>
       <HeaderContainer>
         {editing ? (
-          <input
+          <EditableTodoListTitle
             type="text"
             value={todolistTitle}
             onChange={handleTodolistTitleChange}
             onBlur={handleTodolistTitleFix}
           />
         ) : (
-          <TodoListTitle onClick={handleTodolistTitleClick}> {todolistTitle}</TodoListTitle>
+          <TodoListTitle onClick={handleTodolistTitleClick}>
+            {" "}
+            {todolistTitle}
+          </TodoListTitle>
         )}
 
         <Bin className="remove-todolist-button" />
