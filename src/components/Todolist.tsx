@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React, { ChangeEvent, useState } from "react"
+import React, { ChangeEvent, useEffect, useRef, useState } from "react"
 import { Text } from "./Text"
 import bin from "../assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
@@ -42,10 +42,11 @@ const TodoListTitle = styled(Text)`
   opacity: 0.8;
 `
 const EditableTodoListTitle = styled.input`
-  font-size: 28px;
+  font-size: 34px;
+  opacity: 0.6;
   font-weight: 600;
-  opacity: 0.8;
   border: none;
+  border-bottom: 2px solid #000;
   outline: none;
   background: transparent;
 `
@@ -73,8 +74,9 @@ const TasksContainer = styled.div`
 `
 
 const TodoList: React.FC<IProps> = () => {
-  const [todolistTitle, setTodolistTitle] = useState("Frontend")
+  const [todolistTitle, setTodolistTitle] = useState("Enter todolist title")
   const [editing, setEditing] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleTodolistTitleClick = () => {
     setEditing(true)
@@ -86,19 +88,34 @@ const TodoList: React.FC<IProps> = () => {
   const handleTodolistTitleFix = () => {
     setEditing(false)
   }
+  const handleTodolistTitleKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === "Enter" || event.key === "Escape") {
+      setEditing(false)
+    }
+  }
+  useEffect(() => {
+    if (editing && inputRef.current) {
+      inputRef.current.focus()
+      const length = todolistTitle.length
+      inputRef.current.setSelectionRange(length, length)
+    }
+  }, [editing, todolistTitle])
 
   return (
     <Root>
       <HeaderContainer>
         {editing ? (
           <EditableTodoListTitle
-            type="text"
+            ref={inputRef}
             value={todolistTitle}
             onChange={handleTodolistTitleChange}
             onBlur={handleTodolistTitleFix}
+            onKeyDown={handleTodolistTitleKeyDown}
           />
         ) : (
-          <TodoListTitle onClick={handleTodolistTitleClick}>
+          <TodoListTitle onDoubleClick={handleTodolistTitleClick}>
             {" "}
             {todolistTitle}
           </TodoListTitle>

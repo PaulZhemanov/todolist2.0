@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React, { ChangeEvent, useState } from "react"
+import React, { ChangeEvent, useEffect, useRef, useState } from "react"
 import { Text } from "./Text"
 import bin from "../assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
@@ -52,13 +52,13 @@ const Check = styled.div`
 const TaskTitle = styled(Text)`
   font-size: 20px;
   font-weight: 700;
-  text-transform: uppercase;
 `
 const EditableTaskTitle = styled.input`
   font-size: 28px;
   font-weight: 600;
   opacity: 0.8;
   border: none;
+  border-bottom: 1px solid #000;
   outline: none;
   background: transparent;
 `
@@ -73,8 +73,9 @@ const StyledRow = styled(Row)`
 `
 
 const Task: React.FC<IProps> = ({ ...props }) => {
-  const [taskTitle, setTaskTitle] = useState("enter task title")
+  const [taskTitle, setTaskTitle] = useState("Enter task title")
   const [editing, setEditing] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleTaskTitleClick = () => {
     setEditing(true)
@@ -86,18 +87,36 @@ const Task: React.FC<IProps> = ({ ...props }) => {
   const handleTaskTitleFix = () => {
     setEditing(false)
   }
+  const handleTaskTitleKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (event.key === "Enter" || event.key === "Escape") {
+      setEditing(false)
+    }
+  }
+  useEffect(() => {
+    if (editing && inputRef.current) {
+      inputRef.current.focus()
+      const length = taskTitle.length
+      inputRef.current.setSelectionRange(length, length)
+    }
+  }, [editing, taskTitle])
+
   return (
     <Root {...props}>
       <StyledRow>
         {editing ? (
           <EditableTaskTitle
-            type="text"
+            ref={inputRef}
             value={taskTitle}
             onChange={handleTaskTitleChange}
             onBlur={handleTaskTitleFix}
+            onKeyDown={handleTaskTitleKeyDown}
           />
         ) : (
-          <TaskTitle onClick={handleTaskTitleClick}>{taskTitle}</TaskTitle>
+          <TaskTitle onDoubleClick={handleTaskTitleClick}>
+            {taskTitle}
+          </TaskTitle>
         )}
         <Bin className="remove-task-button" />
       </StyledRow>
