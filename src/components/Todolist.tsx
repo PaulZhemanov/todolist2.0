@@ -1,9 +1,9 @@
 import styled from "@emotion/styled"
-import React, { ChangeEvent, useEffect, useRef, useState } from "react"
-import { Text } from "./Text"
+import React from "react"
 import bin from "../assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import Task from "./Task"
+import EditableTitle from "./EditableTitle"
 
 const Bin = styled.div`
   background: url(${bin});
@@ -36,21 +36,6 @@ const Root = styled.div`
   }
 `
 
-const TodoListTitle = styled(Text)`
-  font-size: 28px;
-  font-weight: 600;
-  opacity: 0.8;
-`
-const EditableTodoListTitle = styled.input`
-  font-size: 34px;
-  opacity: 0.6;
-  font-weight: 600;
-  border: none;
-  border-bottom: 2px solid #000;
-  outline: none;
-  background: transparent;
-`
-
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -74,53 +59,10 @@ const TasksContainer = styled.div`
 `
 
 const TodoList: React.FC<IProps> = () => {
-  const [todolistTitle, setTodolistTitle] = useState("Enter todolist title")
-  const [editing, setEditing] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
-
-  const handleTodolistTitleClick = () => {
-    setEditing(true)
-  }
-
-  const handleTodolistTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setTodolistTitle(event?.target.value)
-  }
-  const handleTodolistTitleFix = () => {
-    setEditing(false)
-  }
-  const handleTodolistTitleKeyDown = (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    if (event.key === "Enter" || event.key === "Escape") {
-      setEditing(false)
-    }
-  }
-  useEffect(() => {
-    if (editing && inputRef.current) {
-      inputRef.current.focus()
-      const length = todolistTitle.length
-      inputRef.current.setSelectionRange(length, length)
-    }
-  }, [editing, todolistTitle])
-
   return (
     <Root>
       <HeaderContainer>
-        {editing ? (
-          <EditableTodoListTitle
-            ref={inputRef}
-            value={todolistTitle}
-            onChange={handleTodolistTitleChange}
-            onBlur={handleTodolistTitleFix}
-            onKeyDown={handleTodolistTitleKeyDown}
-          />
-        ) : (
-          <TodoListTitle onDoubleClick={handleTodolistTitleClick}>
-            {" "}
-            {todolistTitle}
-          </TodoListTitle>
-        )}
-
+        <EditableTitle />
         <Bin className="remove-todolist-button" />
       </HeaderContainer>
       <SizedBox height={10} />

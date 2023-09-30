@@ -1,12 +1,12 @@
 import styled from "@emotion/styled"
-import React, { ChangeEvent, useEffect, useRef, useState } from "react"
+import React from "react"
 import { Text } from "./Text"
 import bin from "../assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import check from "../assets/icons/Check.svg"
 import { Tag } from "./Tag"
 import { Row } from "./Flex"
-import Input from "./Input"
+import EditableTitle from "./EditableTitle"
 
 interface IProps {
   align?: "row" | "column"
@@ -38,6 +38,7 @@ const Root = styled.div`
   }
 `
 
+
 const Bin = styled.div`
   background: url(${bin});
   width: 25px;
@@ -59,11 +60,11 @@ const StyledRow = styled(Row)`
   align-items: center;
 `
 
-const Task: React.FC<IProps> = ({ ...props }) => {
+const Task: React.FC<IProps> = () => {
   return (
-    <Root {...props}>
+    <Root>
       <StyledRow>
-        <Input />
+        <EditableTitle/>
         <Bin className="remove-task-button" />
       </StyledRow>
       <SizedBox height={10} />
