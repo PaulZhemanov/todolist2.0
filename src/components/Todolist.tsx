@@ -62,7 +62,13 @@ const TodoList: React.FC<IProps> = () => {
   return (
     <Root>
       <HeaderContainer>
-        <EditableTitle />
+        <EditableTitle
+          color="#d71919"
+          fontSize="28px"
+          fontWeight="600"
+          opacity="0.3"
+          showUnderline={true}
+        />
         <Bin className="remove-todolist-button" />
       </HeaderContainer>
       <SizedBox height={10} />

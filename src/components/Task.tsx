@@ -38,7 +38,6 @@ const Root = styled.div`
   }
 `
 
-
 const Bin = styled.div`
   background: url(${bin});
   width: 25px;
@@ -55,6 +54,7 @@ const Description = styled(Text)`
   font-size: 16px;
   font-weight: 400;
 `
+
 const StyledRow = styled(Row)`
   justify-content: space-between;
   align-items: center;
@@ -64,7 +64,13 @@ const Task: React.FC<IProps> = () => {
   return (
     <Root>
       <StyledRow>
-        <EditableTitle/>
+        <EditableTitle
+          fontSize="20px"
+          fontWeight="700"
+          textTransform="uppercase"
+          color="#363636"
+          showUnderline={true}
+        />
         <Bin className="remove-task-button" />
       </StyledRow>
       <SizedBox height={10} />
