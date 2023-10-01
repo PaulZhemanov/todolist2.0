@@ -56,16 +56,18 @@ const EditableTitle: React.FC<IProps> = ({
   }
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setTitle(event?.target.value)
+     setTitle(event?.target.value)
   }
 
   const handleTitleFix = () => {
-    setEditing(false)
+    if (title.trim() !== "") {
+      setEditing(false);
+    }
   }
 
   const handleTitleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" || event.key === "Escape") {
-      setEditing(false)
+      handleTitleFix()
     }
   }
 
