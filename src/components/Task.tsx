@@ -49,7 +49,7 @@ const Check = styled.div`
   flex-shrink: 0;
 `
 
-const Description = styled(Text)`
+const Description = styled(EditableTitle)`
   font-size: 16px;
   font-weight: 400;
 `
@@ -65,6 +65,7 @@ const Task: React.FC<IProps> = () => {
     <Root>
       <StyledRow>
         <EditableTitle
+          startTitle="Enter task title"
           fontSize="20px"
           fontWeight="700"
           textTransform="uppercase"
@@ -74,7 +75,12 @@ const Task: React.FC<IProps> = () => {
         <Bin className="remove-task-button" />
       </StyledRow>
       <SizedBox height={10} />
-      <Description>task description</Description>
+      <EditableTitle
+        startTitle="Enter description"
+        color="#1cd719"
+        fontSize="16px"
+        fontWeight="400"
+      />
       <SizedBox height={40} />
       <StyledRow>
         <Tag>Critical</Tag>

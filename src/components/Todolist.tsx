@@ -64,6 +64,7 @@ const TodoList: React.FC<IProps> = () => {
     <Root>
       <HeaderContainer>
         <EditableTitle
+          startTitle="Enter todolist title"
           color="#d71919"
           fontSize="28px"
           fontWeight="600"

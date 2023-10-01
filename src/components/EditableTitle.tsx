@@ -9,12 +9,13 @@ interface IProps {
   textTransform?: string
   showUnderline?: boolean
   opacity?: string
+  startTitle?: string
 }
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-  width: 165px;
+  width: auto;
   height: 27px;
 `
 const StyledInput = styled.input<IProps>`
@@ -48,8 +49,9 @@ const EditableTitle: React.FC<IProps> = ({
   textTransform,
   showUnderline = false,
   opacity,
+  startTitle = "",
 }) => {
-  const [title, setTitle] = useState<string>("Enter title")
+  const [title, setTitle] = useState<string>(startTitle)
   const [editing, setEditing] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -95,6 +97,7 @@ const EditableTitle: React.FC<IProps> = ({
           textTransform={textTransform}
           showUnderline={showUnderline}
           opacity={opacity}
+          maxLength={20}
         />
       ) : (
         <StyledText
