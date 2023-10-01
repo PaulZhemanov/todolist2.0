@@ -18,7 +18,6 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  width: 423px;
   background: #f3f5f6;
 
   border-radius: 12px;
@@ -58,6 +57,7 @@ const Description = styled(Text)`
 const StyledRow = styled(Row)`
   justify-content: space-between;
   align-items: center;
+  width: 333px;
 `
 
 const Task: React.FC<IProps> = () => {

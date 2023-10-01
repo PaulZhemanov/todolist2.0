@@ -39,7 +39,8 @@ const Root = styled.div`
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
+  width: 373px;
 `
 
 const TasksContainer = styled.div`
