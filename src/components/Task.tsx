@@ -49,10 +49,7 @@ const Check = styled.div`
   flex-shrink: 0;
 `
 
-const Description = styled(EditableTitle)`
-  font-size: 16px;
-  font-weight: 400;
-`
+
 
 const StyledRow = styled(Row)`
   justify-content: space-between;
@@ -71,6 +68,7 @@ const Task: React.FC<IProps> = () => {
           textTransform="uppercase"
           color="#363636"
           showUnderline={true}
+          inputLength={20}
         />
         <Bin className="remove-task-button" />
       </StyledRow>
@@ -80,6 +78,7 @@ const Task: React.FC<IProps> = () => {
         color="#1cd719"
         fontSize="16px"
         fontWeight="400"
+        inputLength={40}
       />
       <SizedBox height={40} />
       <StyledRow>

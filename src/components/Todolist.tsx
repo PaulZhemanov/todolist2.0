@@ -70,6 +70,7 @@ const TodoList: React.FC<IProps> = () => {
           fontWeight="600"
           opacity="0.7"
           showUnderline={true}
+          inputLength={20}
         />
         <Bin className="remove-todolist-button" />
       </HeaderContainer>

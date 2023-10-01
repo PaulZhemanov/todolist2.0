@@ -10,6 +10,7 @@ interface IProps {
   showUnderline?: boolean
   opacity?: string
   startTitle?: string
+  inputLength?: number | undefined
 }
 
 const Root = styled.div`
@@ -31,6 +32,7 @@ const StyledInput = styled.input<IProps>`
     props.textTransform ? props.textTransform : "inherit"};
   border-bottom: ${(props) =>
     props.showUnderline ? "2px solid #000" : "none"};
+  maxlength: ${(props) => (props.inputLength ? props.inputLength : "inherit")};
 `
 
 const StyledText = styled(Text)<IProps>`
@@ -50,6 +52,7 @@ const EditableTitle: React.FC<IProps> = ({
   showUnderline = false,
   opacity,
   startTitle = "",
+  inputLength,
 }) => {
   const [title, setTitle] = useState<string>(startTitle)
   const [editing, setEditing] = useState<boolean>(false)
@@ -97,7 +100,7 @@ const EditableTitle: React.FC<IProps> = ({
           textTransform={textTransform}
           showUnderline={showUnderline}
           opacity={opacity}
-          maxLength={20}
+          maxLength={inputLength}
         />
       ) : (
         <StyledText
