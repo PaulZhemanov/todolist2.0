@@ -14,6 +14,8 @@ interface IProps {
 const Root = styled.div`
   display: flex;
   flex-direction: column;
+  width: 165px;
+  height: 27px;
 `
 const StyledInput = styled.input<IProps>`
   border: none;
@@ -56,12 +58,12 @@ const EditableTitle: React.FC<IProps> = ({
   }
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-     setTitle(event?.target.value)
+    setTitle(event?.target.value)
   }
 
   const handleTitleFix = () => {
     if (title.trim() !== "") {
-      setEditing(false);
+      setEditing(false)
     }
   }
 

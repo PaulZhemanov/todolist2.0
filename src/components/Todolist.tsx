@@ -66,12 +66,12 @@ const TodoList: React.FC<IProps> = () => {
           color="#d71919"
           fontSize="28px"
           fontWeight="600"
-          opacity="0.3"
+          opacity="0.7"
           showUnderline={true}
         />
         <Bin className="remove-todolist-button" />
       </HeaderContainer>
-      <SizedBox height={10} />
+      <SizedBox height={20} />
       <TasksContainer>
         <Task />
         <Task />
