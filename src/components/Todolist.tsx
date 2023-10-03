@@ -69,7 +69,7 @@ const TodoList: React.FC<IProps> = () => {
           fontSize="28px"
           fontWeight="600"
           opacity="0.7"
-          showUnderline={true}
+          showUnderline
           inputLength={20}
         />
         <Bin className="remove-todolist-button" />

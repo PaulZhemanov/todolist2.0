@@ -17,10 +17,8 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  background: #f3f5f6;
-
-  border-radius: 12px;
   background: #fff;
+  border-radius: 12px;
   box-shadow: 0px 10px 0px 0px rgba(0, 0, 0, 0.15);
 
   & .remove-task-button,
@@ -64,7 +62,7 @@ const Task: React.FC<IProps> = () => {
           fontWeight="700"
           textTransform="uppercase"
           color="#363636"
-          showUnderline={true}
+          showUnderline
           inputLength={20}
         />
         <Bin className="remove-task-button" />
