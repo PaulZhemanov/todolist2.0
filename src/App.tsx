@@ -1,9 +1,9 @@
 import React from "react"
-import "./App.css"
+import "@App.css"
 import styled from "@emotion/styled"
-import TodoList from "./components/Todolist"
-import SizedBox from "./components/SizeBox"
-import Header from "./components/Header"
+import TodoList from "@components/Todolist"
+import SizedBox from "@components/SizeBox"
+import Header from "@components/Header"
 
 const Root = styled.div`
   display: flex;

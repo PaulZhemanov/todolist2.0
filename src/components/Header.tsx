@@ -3,7 +3,7 @@ import React from "react"
 import { Text } from "./Text"
 import { Row } from "./Flex"
 import SizedBox from "./SizeBox"
-import add from "../assets/icons/Add.svg"
+import add from "@assets/icons/Add.svg"
 
 interface IProps {}
 

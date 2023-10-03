@@ -1,9 +1,8 @@
 import styled from "@emotion/styled"
 import React from "react"
-import { Text } from "./Text"
-import bin from "../assets/icons/Bin.svg"
+import bin from "@assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
-import check from "../assets/icons/Check.svg"
+import check from "@assets/icons/Check.svg"
 import { Tag } from "./Tag"
 import { Row } from "./Flex"
 import EditableTitle from "./EditableTitle"
@@ -48,8 +47,6 @@ const Check = styled.div`
   height: 24px;
   flex-shrink: 0;
 `
-
-
 
 const StyledRow = styled(Row)`
   justify-content: space-between;
