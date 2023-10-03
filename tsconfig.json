@@ -28,7 +28,9 @@
       "@stores": ["src/stores"],
       "@stores/*": ["src/stores/*"],
       "@screens": ["src/screens"],
-      "@screens/*": ["src/screens/*"]
+      "@screens/*": ["src/screens/*"],
+      "@assets": ["src/assets"],
+      "@assets/*": ["src/assets/*"],
     }
   },
 

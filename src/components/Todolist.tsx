@@ -1,6 +1,6 @@
 import styled from "@emotion/styled"
 import React from "react"
-import bin from "@/assets/icons/Bin.svg"
+import bin from "@assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import Task from "./Task"
 import EditableTitle from "./EditableTitle"
