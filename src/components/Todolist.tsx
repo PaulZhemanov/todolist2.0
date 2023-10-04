@@ -4,6 +4,8 @@ import bin from "@assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import Task from "./Task"
 import EditableTitle from "./EditableTitle"
+import { InputStore } from "@src/stores/Store"
+
 
 const Bin = styled.div`
   background: url(${bin});
@@ -60,10 +62,12 @@ const TasksContainer = styled.div`
 `
 
 const TodoList: React.FC<IProps> = () => {
+   const inputTodolistStore = new InputStore()
   return (
     <Root>
       <HeaderContainer>
         <EditableTitle
+          inputStore={inputTodolistStore}
           startTitle="Enter todolist title"
           color="#d71919"
           fontSize="28px"

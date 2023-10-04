@@ -6,6 +6,8 @@ import check from "@assets/icons/Check.svg"
 import { Tag } from "./Tag"
 import { Row } from "./Flex"
 import EditableTitle from "./EditableTitle"
+import { InputStore } from "@src/stores/Store"
+
 
 interface IProps {
   align?: "row" | "column"
@@ -53,10 +55,13 @@ const StyledRow = styled(Row)`
 `
 
 const Task: React.FC<IProps> = () => {
+     const inputTaskStore = new InputStore()
+
   return (
     <Root>
       <StyledRow>
         <EditableTitle
+          inputStore={inputTaskStore}
           startTitle="Enter task title"
           fontSize="20px"
           fontWeight="700"
@@ -69,6 +74,7 @@ const Task: React.FC<IProps> = () => {
       </StyledRow>
       <SizedBox height={10} />
       <EditableTitle
+        inputStore={inputTaskStore}
         startTitle="Enter description"
         color="#1cd719"
         fontSize="16px"
