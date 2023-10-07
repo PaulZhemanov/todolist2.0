@@ -30,10 +30,10 @@ function App() {
       <Header />
       <Body>
         <TodoList />
-        <SizedBox width={10} />
-        <TodoList />
-        <SizedBox width={10} />
-        <TodoList />
+        {/*<SizedBox width={10} />*/}
+        {/*<TodoList />*/}
+        {/*<SizedBox width={10} />*/}
+        {/*<TodoList />*/}
       </Body>
     </Root>
   )

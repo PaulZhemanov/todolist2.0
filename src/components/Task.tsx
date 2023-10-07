@@ -6,10 +6,14 @@ import check from "@assets/icons/Check.svg"
 import { Tag } from "./Tag"
 import { Row } from "./Flex"
 import EditableTitle from "./EditableTitle"
-import { InputStore } from "@src/stores/Store"
+import {TTask} from "@stores/TaskStore";
 
 
 interface IProps {
+  task: TTask
+  onEdit: (task: TTask) => void
+  onRemove: () => void
+
   align?: "row" | "column"
   style?: React.CSSProperties
   bodyStyle?: React.CSSProperties
@@ -54,32 +58,31 @@ const StyledRow = styled(Row)`
   width: 333px;
 `
 
-const Task: React.FC<IProps> = () => {
-     const inputTaskStore = new InputStore()
+const Task: React.FC<IProps> = ({task, onRemove,onEdit }) => {
 
   return (
     <Root>
       <StyledRow>
         <EditableTitle
-          inputStore={inputTaskStore}
-          startTitle="Enter task title"
+          startTitle={task.title}
           fontSize="20px"
           fontWeight="700"
           textTransform="uppercase"
           color="#363636"
           showUnderline
           inputLength={20}
+          onChange={(title) => onEdit({...task, title})}
         />
-        <Bin className="remove-task-button" />
+        <Bin className="remove-task-button" onClick={onRemove} />
       </StyledRow>
       <SizedBox height={10} />
       <EditableTitle
-        inputStore={inputTaskStore}
-        startTitle="Enter description"
+        startTitle={task.description}
         color="#1cd719"
         fontSize="16px"
         fontWeight="400"
         inputLength={40}
+        onChange={(description) => onEdit({...task, description})}
       />
       <SizedBox height={40} />
       <StyledRow>

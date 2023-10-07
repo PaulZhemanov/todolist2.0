@@ -1,18 +1,9 @@
 import styled from "@emotion/styled"
 import React, { ChangeEvent, useEffect, useRef, useState } from "react"
-import { Text } from "./Text"
-import { InputStore } from "@src/stores/Store"
+import {IEditableInputProps, StyledInput, StyledText} from "@components/StyledInput";
 
-interface IProps {
-  fontSize?: string
-  color?: string
-  fontWeight?: string
-  textTransform?: string
-  showUnderline?: boolean
-  opacity?: string
-  startTitle?: string
-  inputLength?: number | undefined
-  inputStore: InputStore
+interface IProps extends IEditableInputProps{
+  onChange?: (str: string) => void
 }
 
 const Root = styled.div`
@@ -20,30 +11,6 @@ const Root = styled.div`
   flex-direction: column;
   width: auto;
   height: 27px;
-`
-const StyledInput = styled.input<IProps>`
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: ${(props) => (props.fontSize ? props.fontSize : "inherit")};
-  opacity: ${(props) => (props.opacity ? props.opacity : "inherit")};
-  color: ${(props) => (props.color ? props.color : "inherit")};
-  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "inherit")};
-  text-transform: ${(props) =>
-    props.textTransform ? props.textTransform : "inherit"};
-  border-bottom: ${(props) =>
-    props.showUnderline ? "2px solid #000" : "none"};
-  maxlength: ${(props) => (props.inputLength ? props.inputLength : "inherit")};
-  
-`
-
-const StyledText = styled(Text)<IProps>`
-  font-size: ${(props) => (props.fontSize ? props.fontSize : "inherit")};
-  text-transform: ${(props) =>
-    props.textTransform ? props.textTransform : "inherit"};
-  opacity: ${(props) => (props.opacity ? props.opacity : "inherit")};
-  font-weight: ${(props) => (props.fontWeight ? props.fontWeight : "inherit")};
-  color: ${(props) => (props.color ? props.color : "inherit")};
 `
 
 const EditableTitle: React.FC<IProps> = ({
@@ -55,11 +22,10 @@ const EditableTitle: React.FC<IProps> = ({
   opacity,
   startTitle = "",
   inputLength,
-  inputStore,
+  ...rest
 }) => {
-  // const [title, setTitle] = useState<string>(startTitle)
+  const [title, setTitle] = useState<string>(startTitle)
   // const inputStore = new InputStore()
-  const title = inputStore.inputValue
   const [editing, setEditing] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -68,11 +34,12 @@ const EditableTitle: React.FC<IProps> = ({
   }
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    inputStore.setInputValue(event?.target.value)
+    setTitle(event?.target.value)
+    rest.onChange && rest.onChange(event?.target.value ?? "")
   }
 
   const handleTitleFix = () => {
-    if (inputStore.inputValue.trim() !== "") {
+    if (title.trim() !== "") {
       setEditing(false)
     }
   }
@@ -95,7 +62,7 @@ const EditableTitle: React.FC<IProps> = ({
       {editing ? (
         <StyledInput
           ref={inputRef}
-          value={inputStore.inputValue}
+          value={title}
           onChange={handleTitleChange}
           onBlur={handleTitleFix}
           onKeyDown={handleTitleKeyDown}

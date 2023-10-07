@@ -4,7 +4,8 @@ import bin from "@assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import Task from "./Task"
 import EditableTitle from "./EditableTitle"
-import { InputStore } from "@src/stores/Store"
+import {useStores} from "@stores";
+import { observer } from "mobx-react";
 
 
 const Bin = styled.div`
@@ -25,7 +26,7 @@ const Root = styled.div`
   padding: 25px 25px 40px 25px;
   background: #f3f5f6;
   justify-content: space-between;
-  width: 100%;
+  width: fit-content;
 
   & .remove-todolist-button {
     display: none;
@@ -61,13 +62,12 @@ const TasksContainer = styled.div`
   }
 `
 
-const TodoList: React.FC<IProps> = () => {
-   const inputTodolistStore = new InputStore()
+const TodoList: React.FC<IProps> = observer(() => {
+  const {taskStore} = useStores()
   return (
     <Root>
       <HeaderContainer>
         <EditableTitle
-          inputStore={inputTodolistStore}
           startTitle="Enter todolist title"
           color="#d71919"
           fontSize="28px"
@@ -80,11 +80,16 @@ const TodoList: React.FC<IProps> = () => {
       </HeaderContainer>
       <SizedBox height={20} />
       <TasksContainer>
-        <Task />
-        <Task />
-        <Task />
+          {taskStore.tasks.map((task, index) =>
+              <Task
+                  key={index}
+                  task={task}
+                  onEdit={(task) => taskStore.editTask(index, task)}
+                  onRemove={() => taskStore.removeTask(index)}
+              />
+          )}
       </TasksContainer>
     </Root>
   )
-}
+})
 export default TodoList
