@@ -73,7 +73,7 @@ const TasksContainer = styled.div`
 const TodoList: React.FC<IProps> = observer(({index}) => {
   const { taskStore } = useStores()
   let defaultTask: TTask = {
-    title: "New task",
+    taskTitle: "New task",
     description: "Blablabla",
     status: TASK_STATUS.ACTIVE,
   }
@@ -81,7 +81,7 @@ const TodoList: React.FC<IProps> = observer(({index}) => {
     <Root>
       <HeaderContainer>
         <EditableTitle
-          startTitle="Enter todolist title"
+          startTaskTitle="Enter task title" 
           color="#d71919"
           fontSize="28px"
           fontWeight="600"

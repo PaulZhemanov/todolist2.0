@@ -62,20 +62,20 @@ const Task: React.FC<IProps> = ({ task, onRemove, onEdit }) => {
     <Root>
       <StyledRow>
         <EditableTitle
-          startTitle={task.title}
+          startTaskTitle={task.taskTitle}
           fontSize="20px"
           fontWeight="700"
           textTransform="uppercase"
           color="#363636"
           showUnderline
           inputLength={20}
-          onChange={(title) => onEdit({ ...task, title })}
+          onChange={(taskTitle) => onEdit({ ...task, taskTitle })}
         />
         <Bin className="remove-task-button" onClick={onRemove} />
       </StyledRow>
       <SizedBox height={10} />
       <EditableTitle
-        startTitle={task.description}
+        startTaskTitle={task.description}
         color="#1cd719"
         fontSize="16px"
         fontWeight="400"

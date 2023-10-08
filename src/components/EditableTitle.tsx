@@ -8,7 +8,7 @@ import {
 
 interface IProps extends IEditableInputProps {
   onChange?: (str: string) => void
-  startTitle?: string
+  startTaskTitle?: string
 }
 
 const Root = styled.div`
@@ -25,11 +25,11 @@ const EditableTitle: React.FC<IProps> = ({
   textTransform,
   showUnderline = false,
   opacity,
-  startTitle = "",
+  startTaskTitle = "",
   inputLength,
   ...rest
 }) => {
-  const [title, setTitle] = useState<string>(startTitle)
+  const [title, setTitle] = useState<string>(startTaskTitle)
   const [editing, setEditing] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
 

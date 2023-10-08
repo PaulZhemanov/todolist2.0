@@ -43,7 +43,7 @@ const Header: React.FC<IProps> = () => {
   let defaultTodolist: TTodolist = {
     todolistTitle: "New todolist",
     tasks: {
-      title: "New task",
+      taskTitle: "New task",
       description: "Blablabla",
       status: TASK_STATUS.ACTIVE,
     },

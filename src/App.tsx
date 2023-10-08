@@ -6,6 +6,8 @@ import Header from "@components/Header"
 import { useStores } from "./stores"
 import Todolist from "./components/Todolist"
 import { TTodolist } from "./stores/TaskStore"
+import { observer } from "mobx-react"
+
 const Root = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,7 +27,7 @@ const Body = styled.div`
   max-width: 1280px;
 `
 
-function App() {
+const App: React.FC = observer(() => {
   const { taskStore } = useStores()
   
   return (
@@ -36,13 +38,16 @@ function App() {
           <Todolist
             key={index}
             todolist={todolist}
-            onEdit={(todolist: TTodolist) => taskStore.editTodolist(index, todolist)}
+            onEdit={(todolist: TTodolist) =>
+              taskStore.editTodolist(index, todolist)
+            }
             onRemove={() => taskStore.removeTodolist(index)}
-            index={index} />
+            index={index}
+          />
         ))}
       </Body>
     </Root>
   )
-}
+})
 
 export default App

@@ -7,7 +7,7 @@ export enum TASK_STATUS {
 }
 
 export type TTask = {
-    title: string,
+    taskTitle: string,
     description: string,
     status: TASK_STATUS
 }
