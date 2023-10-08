@@ -34,15 +34,14 @@ const App: React.FC = observer(() => {
     <Root>
       <Header />
       <Body>
-        {taskStore.todolists.map((todolist, index) => (
+        {taskStore.todolists.map((todolist, indexTodolist) => (
           <Todolist
-            key={index}
+            key={indexTodolist}
             todolist={todolist}
             onEdit={(todolist: TTodolist) =>
-              taskStore.editTodolist(index, todolist)
+              taskStore.editTodolist(indexTodolist, todolist)
             }
-            onRemove={() => taskStore.removeTodolist(index)}
-            index={index}
+            indexTodolist={indexTodolist}
           />
         ))}
       </Body>

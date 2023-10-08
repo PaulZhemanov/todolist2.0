@@ -58,6 +58,7 @@ const StyledRow = styled(Row)`
 `
 
 const Task: React.FC<IProps> = ({ task, onRemove, onEdit }) => {
+  
   return (
     <Root>
       <StyledRow>

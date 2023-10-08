@@ -22,9 +22,8 @@ const Add = styled.div`
 
 interface IProps {
   onEdit: (todolist: TTodolist) => void
-  onRemove: () => void
   todolist: TTodolist
-  index: number
+  indexTodolist: number
 }
 
 const Root = styled.div`
@@ -70,43 +69,46 @@ const TasksContainer = styled.div`
   }
 `
 
-const TodoList: React.FC<IProps> = observer(({index}) => {
-  const { taskStore } = useStores()
-  let defaultTask: TTask = {
-    taskTitle: "New task",
-    description: "Blablabla",
-    status: TASK_STATUS.ACTIVE,
-  }
-  return (
-    <Root>
-      <HeaderContainer>
-        <EditableTitle
-          startTaskTitle="Enter task title" 
-          color="#d71919"
-          fontSize="28px"
-          fontWeight="600"
-          opacity="0.7"
-          showUnderline
-          inputLength={20}
-        />
-        <Add onClick={() => taskStore.addTask(defaultTask)} />
-        <Bin
-          className="remove-todolist-button"
-          onClick={() => taskStore.removeTodolist(index)}
-        />
-      </HeaderContainer>
-      <SizedBox height={20} />
-      <TasksContainer>
-        {taskStore.tasks.map((task, index) => (
-          <Task
-            key={index}
-            task={task}
-            onEdit={(task) => taskStore.editTask(index, task)}
-            onRemove={() => taskStore.removeTask(index)}
+const TodoList: React.FC<IProps> = observer(
+  ({ indexTodolist, onEdit, todolist }) => {
+    const { taskStore } = useStores()
+    const defaultTask: TTask = {
+      taskTitle: "New task",
+      description: "Blablabla",
+      status: TASK_STATUS.ACTIVE,
+    }
+    return (
+      <Root>
+        <HeaderContainer>
+          <EditableTitle
+            startTaskTitle="Enter task title"
+            color="#d71919"
+            fontSize="28px"
+            fontWeight="600"
+            opacity="0.7"
+            showUnderline
+            inputLength={20}
+            onChange={(todolistTitle) => onEdit({ ...todolist, todolistTitle })}
           />
-        ))}
-      </TasksContainer>
-    </Root>
-  )
-})
+          <Add onClick={() => taskStore.addTask(defaultTask)} />
+          <Bin
+            className="remove-todolist-button"
+            onClick={() => taskStore.removeTodolist(indexTodolist)}
+          />
+        </HeaderContainer>
+        <SizedBox height={20} />
+        <TasksContainer>
+          {taskStore.tasks.map((task, indexTask) => (
+            <Task
+              key={indexTask}
+              task={task}
+              onEdit={(task) => taskStore.editTask(indexTask, task)}
+              onRemove={() => taskStore.removeTask(indexTask)}
+            />
+          ))}
+        </TasksContainer>
+      </Root>
+    )
+  }
+)
 export default TodoList

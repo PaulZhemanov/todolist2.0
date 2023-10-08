@@ -14,23 +14,23 @@ export type TTask = {
 
 export type TTodolist = {
     todolistTitle: string,
-    tasks: TTask
+    tasks: Array<TTask>
 }
 
 export default class TaskStore {
     public readonly rootStore: RootStore;
 
     public tasks: Array<TTask> = []
-    private setTasks = (tasks: Array<TTask>) => this.tasks = tasks
+    public setTasks = (tasks: Array<TTask>) => this.tasks = tasks
     public addTask = (task: TTask) => this.tasks.push(task)
-    public removeTask = (index: number) => this.tasks.splice(index, 1)
-    public editTask = (index: number, task: TTask) => this.tasks[index] = task
+    public removeTask = (indexTask: number) => this.tasks.splice(indexTask, 1)
+    public editTask = (indexTask: number, task: TTask) => this.tasks[indexTask] = task
 
     public todolists: Array<TTodolist> = []
-    private setTodolists = (todolists: Array<TTodolist>) => this.todolists = todolists
+    public setTodolists = (todolists: Array<TTodolist>) => this.todolists = todolists
     public addTodolist = (todolist: TTodolist) => this.todolists.push(todolist)
-    public removeTodolist = (index: number) => this.todolists.splice(index, 1)
-    public editTodolist = (index: number, todolist: TTodolist) => this.todolists[index] = todolist
+    public removeTodolist = (indexTodolist: number) => this.todolists.splice(indexTodolist, 1)
+    public editTodolist = (indexTodolist: number, todolist: TTodolist) => this.todolists[indexTodolist] = todolist
 
     constructor(rootStore: RootStore, initState?: any) {
         this.rootStore = rootStore;
