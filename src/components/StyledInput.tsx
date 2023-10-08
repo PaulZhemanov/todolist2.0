@@ -1,15 +1,14 @@
-import {Text} from "@components/Text";
-import styled from "@emotion/styled";
+import { Text } from "@components/Text"
+import styled from "@emotion/styled"
 
 export interface IEditableInputProps {
-    fontSize?: string
-    color?: string
-    fontWeight?: string
-    textTransform?: string
-    showUnderline?: boolean
-    opacity?: string
-    startTitle?: string
-    inputLength?: number | undefined
+  fontSize?: string
+  color?: string
+  fontWeight?: string
+  textTransform?: string
+  showUnderline?: boolean
+  opacity?: string
+  inputLength?: number | undefined
 }
 
 export const StyledInput = styled.input<IEditableInputProps>`
@@ -25,9 +24,7 @@ export const StyledInput = styled.input<IEditableInputProps>`
   border-bottom: ${(props) =>
     props.showUnderline ? "2px solid #000" : "none"};
   maxlength: ${(props) => (props.inputLength ? props.inputLength : "inherit")};
-  
 `
-
 
 export const StyledText = styled(Text)<IEditableInputProps>`
   font-size: ${(props) => (props.fontSize ? props.fontSize : "inherit")};

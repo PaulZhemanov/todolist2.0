@@ -6,8 +6,7 @@ import check from "@assets/icons/Check.svg"
 import { Tag } from "./Tag"
 import { Row } from "./Flex"
 import EditableTitle from "./EditableTitle"
-import {TTask} from "@stores/TaskStore";
-
+import { TTask } from "@stores/TaskStore"
 
 interface IProps {
   task: TTask
@@ -58,8 +57,7 @@ const StyledRow = styled(Row)`
   width: 333px;
 `
 
-const Task: React.FC<IProps> = ({task, onRemove,onEdit }) => {
-
+const Task: React.FC<IProps> = ({ task, onRemove, onEdit }) => {
   return (
     <Root>
       <StyledRow>
@@ -71,7 +69,7 @@ const Task: React.FC<IProps> = ({task, onRemove,onEdit }) => {
           color="#363636"
           showUnderline
           inputLength={20}
-          onChange={(title) => onEdit({...task, title})}
+          onChange={(title) => onEdit({ ...task, title })}
         />
         <Bin className="remove-task-button" onClick={onRemove} />
       </StyledRow>
@@ -82,7 +80,7 @@ const Task: React.FC<IProps> = ({task, onRemove,onEdit }) => {
         fontSize="16px"
         fontWeight="400"
         inputLength={40}
-        onChange={(description) => onEdit({...task, description})}
+        onChange={(description) => onEdit({ ...task, description })}
       />
       <SizedBox height={40} />
       <StyledRow>

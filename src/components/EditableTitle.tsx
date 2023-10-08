@@ -1,9 +1,14 @@
 import styled from "@emotion/styled"
 import React, { ChangeEvent, useEffect, useRef, useState } from "react"
-import {IEditableInputProps, StyledInput, StyledText} from "@components/StyledInput";
+import {
+  IEditableInputProps,
+  StyledInput,
+  StyledText,
+} from "@components/StyledInput"
 
-interface IProps extends IEditableInputProps{
+interface IProps extends IEditableInputProps {
   onChange?: (str: string) => void
+  startTitle?: string
 }
 
 const Root = styled.div`
@@ -25,7 +30,6 @@ const EditableTitle: React.FC<IProps> = ({
   ...rest
 }) => {
   const [title, setTitle] = useState<string>(startTitle)
-  // const inputStore = new InputStore()
   const [editing, setEditing] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
 

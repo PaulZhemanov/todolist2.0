@@ -4,20 +4,27 @@ import bin from "@assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import Task from "./Task"
 import EditableTitle from "./EditableTitle"
-import {useStores} from "@stores";
-import { observer } from "mobx-react";
-
+import { useStores } from "@stores"
+import { observer } from "mobx-react"
+import AddMin from "@assets/icons/AddMin.svg"
+import { TASK_STATUS, TTask, TTodolist } from "@src/stores/TaskStore"
 
 const Bin = styled.div`
   background: url(${bin});
   width: 25px;
   height: 25px;
 `
+const Add = styled.div`
+  background: url(${AddMin});
+  width: 25px; //!!!!!!!!!
+  height: 25px;
+`
 
 interface IProps {
-  align?: "row" | "column"
-  style?: React.CSSProperties
-  bodyStyle?: React.CSSProperties
+  onEdit: (todolist: TTodolist) => void
+  onRemove: () => void
+  todolist: TTodolist
+  index: number
 }
 
 const Root = styled.div`
@@ -40,10 +47,11 @@ const Root = styled.div`
 `
 
 const HeaderContainer = styled.div`
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
   width: 373px;
+  height: fit-content
 `
 
 const TasksContainer = styled.div`
@@ -62,8 +70,13 @@ const TasksContainer = styled.div`
   }
 `
 
-const TodoList: React.FC<IProps> = observer(() => {
-  const {taskStore} = useStores()
+const TodoList: React.FC<IProps> = observer(({index}) => {
+  const { taskStore } = useStores()
+  let defaultTask: TTask = {
+    title: "New task",
+    description: "Blablabla",
+    status: TASK_STATUS.ACTIVE,
+  }
   return (
     <Root>
       <HeaderContainer>
@@ -76,18 +89,22 @@ const TodoList: React.FC<IProps> = observer(() => {
           showUnderline
           inputLength={20}
         />
-        <Bin className="remove-todolist-button" />
+        <Add onClick={() => taskStore.addTask(defaultTask)} />
+        <Bin
+          className="remove-todolist-button"
+          onClick={() => taskStore.removeTodolist(index)}
+        />
       </HeaderContainer>
       <SizedBox height={20} />
       <TasksContainer>
-          {taskStore.tasks.map((task, index) =>
-              <Task
-                  key={index}
-                  task={task}
-                  onEdit={(task) => taskStore.editTask(index, task)}
-                  onRemove={() => taskStore.removeTask(index)}
-              />
-          )}
+        {taskStore.tasks.map((task, index) => (
+          <Task
+            key={index}
+            task={task}
+            onEdit={(task) => taskStore.editTask(index, task)}
+            onRemove={() => taskStore.removeTask(index)}
+          />
+        ))}
       </TasksContainer>
     </Root>
   )

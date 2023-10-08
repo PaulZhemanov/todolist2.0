@@ -1,10 +1,11 @@
 import React from "react"
 import "./App.css"
 import styled from "@emotion/styled"
-import TodoList from "@components/Todolist"
 import SizedBox from "@components/SizeBox"
 import Header from "@components/Header"
-
+import { useStores } from "./stores"
+import Todolist from "./components/Todolist"
+import { TTodolist } from "./stores/TaskStore"
 const Root = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,15 +26,20 @@ const Body = styled.div`
 `
 
 function App() {
+  const { taskStore } = useStores()
+  
   return (
     <Root>
       <Header />
       <Body>
-        <TodoList />
-        {/*<SizedBox width={10} />*/}
-        {/*<TodoList />*/}
-        {/*<SizedBox width={10} />*/}
-        {/*<TodoList />*/}
+        {taskStore.todolists.map((todolist, index) => (
+          <Todolist
+            key={index}
+            todolist={todolist}
+            onEdit={(todolist: TTodolist) => taskStore.editTodolist(index, todolist)}
+            onRemove={() => taskStore.removeTodolist(index)}
+            index={index} />
+        ))}
       </Body>
     </Root>
   )

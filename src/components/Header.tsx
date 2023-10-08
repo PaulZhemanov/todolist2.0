@@ -3,19 +3,17 @@ import React from "react"
 import { Text } from "./Text"
 import { Row } from "./Flex"
 import SizedBox from "./SizeBox"
-import add from "@assets/icons/Add.svg"
-import {useStores} from "@stores";
-import Task from "@components/Task";
-import {TASK_STATUS, TTask} from "@stores/TaskStore";
+import AddMax from "@assets/icons/AddMax.svg"
+import { useStores } from "@stores"
+import Task from "@components/Task"
+import { TASK_STATUS, TTask, TTodolist } from "@stores/TaskStore"
 
 interface IProps {}
 
-const Icon = styled.div`
-  width: 48px;
+const Add = styled.div`
+  background: url(${AddMax});
+  width: 48px; //!!!!!!!!!
   height: 48px;
-`
-const Add = styled(Icon)`
-  background: url(${add});
 `
 
 const Root = styled.div`
@@ -41,11 +39,14 @@ const StyledRow = styled(Row)`
 `
 
 const Header: React.FC<IProps> = () => {
-  const {taskStore} = useStores()
-  let defaultTask: TTask = {
+  const { taskStore } = useStores()
+  let defaultTodolist: TTodolist = {
+    todolistTitle: "New todolist",
+    tasks: {
       title: "New task",
       description: "Blablabla",
-      status: TASK_STATUS.ACTIVE
+      status: TASK_STATUS.ACTIVE,
+    },
   }
   return (
     <Root>
@@ -54,7 +55,7 @@ const Header: React.FC<IProps> = () => {
 
       <StyledRow>
         <SubTitile>Add new column</SubTitile>
-        <Add onClick={() => taskStore.addTask(defaultTask)} />
+        <Add onClick={() => taskStore.addTodolist(defaultTodolist)} />
       </StyledRow>
     </Root>
   )
