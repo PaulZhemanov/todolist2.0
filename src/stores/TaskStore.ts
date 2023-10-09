@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import RootStore from "@stores/RootStore";
-import {randomUUID} from "crypto";
 import TodoList from "@components/Todolist";
+import { randomUUID } from "node:crypto";
 
 export enum TASK_STATUS {
     ACTIVE,
@@ -12,11 +12,11 @@ export type TTask = {
     taskTitle: string,
     description: string,
     status: TASK_STATUS
-    todoListId: string
+    todoListId: number
 }
 
 export type TTodolist = {
-    id: string,
+    id: number,
     title: string,
 }
 
@@ -31,15 +31,15 @@ export default class TaskStore {
 
     public todolists: Array<TTodolist> = []
     public setTodolists = (todolists: Array<TTodolist>) => this.todolists = todolists
-    public addTodolist = (title: string) => this.todolists.push({id: randomUUID(), title})
-    public removeTodolist = (id: string) => {
-        for (let i = this.tasks.length - 1; i--; i >= 0){
+    public addTodolist = (title: string) => this.todolists.push({ id: Math.random(), title })
+    public removeTodolist = (id: number) => {
+        for (let i = this.tasks.length - 1; i--; i >= 0) {
             this.tasks[i].todoListId === id && this.removeTask(i);
         }
         const index = this.todolists.findIndex(todolist => todolist.id === id)
         index !== -1 && this.todolists.splice(index, 1)
     }
-    public editTodolist = (id: string, title: string) => {
+    public editTodolist = (id: number, title: string) => {
         const index = this.todolists.findIndex(todolist => todolist.id === id)
         index !== -1 && (this.todolists[index].title = title)
     }
