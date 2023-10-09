@@ -40,14 +40,6 @@ const StyledRow = styled(Row)`
 
 const Header: React.FC<IProps> = () => {
   const { taskStore } = useStores()
- let defaultTodolist: TTodolist = {
-    todolistTitle: "New todolist",
-    tasks: [{
-      taskTitle: "New task",
-      description: "Blablabla",
-      status: TASK_STATUS.ACTIVE,
-    }]
-};
 
   return (
     <Root>
@@ -56,7 +48,7 @@ const Header: React.FC<IProps> = () => {
 
       <StyledRow>
         <SubTitile>Add new column</SubTitile>
-        <Add onClick={() => taskStore.addTodolist(defaultTodolist)} />
+        <Add onClick={() => taskStore.addTodolist("New todolist")} />
       </StyledRow>
     </Root>
   )

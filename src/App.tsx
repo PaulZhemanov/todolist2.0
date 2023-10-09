@@ -39,7 +39,7 @@ const App: React.FC = observer(() => {
             key={indexTodolist}
             todolist={todolist}
             onEdit={(todolist: TTodolist) =>
-              taskStore.editTodolist(indexTodolist, todolist)
+              taskStore.editTodolist(todolist.id, todolist.title)
             }
             indexTodolist={indexTodolist}
           />
