@@ -50,7 +50,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 373px;
-  height: fit-content
+  height: fit-content;
 `
 
 const TasksContainer = styled.div`
@@ -90,7 +90,7 @@ const TodoList: React.FC<IProps> = observer(
             inputLength={20}
             onChange={(todolistTitle) => onEdit({ ...todolist, todolistTitle })}
           />
-          <Add onClick={() => taskStore.addTask(defaultTask)} />
+          <Add onClick={() => taskStore.addTask(defaultTask, indexTodolist)} />
           <Bin
             className="remove-todolist-button"
             onClick={() => taskStore.removeTodolist(indexTodolist)}
@@ -102,8 +102,10 @@ const TodoList: React.FC<IProps> = observer(
             <Task
               key={indexTask}
               task={task}
-              onEdit={(task) => taskStore.editTask(indexTask, task)}
-              onRemove={() => taskStore.removeTask(indexTask)}
+              onEdit={(task) =>
+                taskStore.editTask(indexTask, task, indexTodolist)
+              }
+              onRemove={() => taskStore.removeTask(indexTask, indexTodolist)}
             />
           ))}
         </TasksContainer>
