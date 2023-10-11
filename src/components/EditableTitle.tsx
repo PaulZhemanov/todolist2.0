@@ -6,17 +6,18 @@ import {
   StyledText,
 } from "@components/StyledInput"
 
-interface IProps extends IEditableInputProps {
-  onChange?: (str: string) => void
-  startTaskTitle?: string
-}
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
   width: auto;
   height: 27px;
-`
+  `
+
+interface IProps extends IEditableInputProps {
+onChange?: (str: string) => void
+startTaskTitle?: string
+}
 
 const EditableTitle: React.FC<IProps> = ({
   fontSize,

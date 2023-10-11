@@ -19,55 +19,51 @@ const Add = styled.div`
   width: 25px; //!!!!!!!!!
   height: 25px;
 `
-  const Root = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 25px 25px 40px 25px;
-    background: #f3f5f6;
-    justify-content: space-between;
-    width: fit-content;
-  
-    & .remove-todolist-button {
-      display: none;
-    }
-  
-    :hover {
-      & .remove-todolist-button {
-        display: block;
-      }
-    }
-  `
-  const HeaderContainer = styled.div`
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 373px;
-    height: fit-content;
-  `
+const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 25px 25px 40px 25px;
+  background: #f3f5f6;
+  justify-content: space-between;
+  width: fit-content;
 
-  const TasksContainer = styled.div`
-    display: inline-flex;
-    justify-content: start;
-    flex-direction: column;
-    align-items: start;
-    height: 100%;
-  
-    & > * {
-      margin-bottom: 20px;
+  & .remove-todolist-button {
+    display: none;
+  }
+
+  :hover {
+    & .remove-todolist-button {
+      display: block;
     }
-  
-    & > :last-child {
-      margin-bottom: 0;
-    }
-  `
+  }
+`
+const HeaderContainer = styled.div`
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 373px;
+  height: fit-content;
+`
+const TasksContainer = styled.div`
+  display: inline-flex;
+  justify-content: start;
+  flex-direction: column;
+  align-items: start;
+  height: 100%;
+
+  & > * {
+    margin-bottom: 20px;
+  }
+
+  & > :last-child {
+    margin-bottom: 0;
+  }
+`
 interface IProps {
   onEdit: (todolist: TTodolist) => void
   todolist: TTodolist
   id: number
 }
-
-
-
 
 const TodoList: React.FC<IProps> = observer(({ id, onEdit, todolist }) => {
   const { taskStore } = useStores()
@@ -75,7 +71,7 @@ const TodoList: React.FC<IProps> = observer(({ id, onEdit, todolist }) => {
     taskTitle: "New task",
     description: "Blablabla",
     status: TASK_STATUS.ACTIVE,
-    todoListId: id
+    todoListId: id,
   }
   return (
     <Root>
@@ -102,7 +98,7 @@ const TodoList: React.FC<IProps> = observer(({ id, onEdit, todolist }) => {
           <Task
             key={indexTask}
             task={task}
-            onEdit={(task) => taskStore.editTask(indexTask, task)}
+            onEdit={(editedTask) => taskStore.editTask(indexTask, editedTask)}
             onRemove={() => taskStore.removeTask(indexTask)}
           />
         ))}

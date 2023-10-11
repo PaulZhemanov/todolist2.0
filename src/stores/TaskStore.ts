@@ -1,7 +1,5 @@
 import { makeAutoObservable } from "mobx";
 import RootStore from "@stores/RootStore";
-import TodoList from "@components/Todolist";
-import { randomUUID } from "node:crypto";
 
 export enum TASK_STATUS {
     ACTIVE,
@@ -26,14 +24,14 @@ export default class TaskStore {
     public tasks: Array<TTask> = []
     public setTasks = (tasks: Array<TTask>) => this.tasks = tasks
     public addTask = (task: TTask) => this.tasks.push(task)
-    public removeTask = (indexTask: number) => this.tasks.splice(indexTask, 1)
+    public removeTask = (index: number) => this.tasks.splice(index, 1)
     public editTask = (indexTask: number, task: TTask) => this.tasks[indexTask] = task
 
     public todolists: Array<TTodolist> = []
     public setTodolists = (todolists: Array<TTodolist>) => this.todolists = todolists
     public addTodolist = (title: string) => this.todolists.push({ id: Math.random(), title })
     public removeTodolist = (id: number) => {
-        for (let i = this.tasks.length - 1; i--; i >= 0) {
+        for (let i = this.tasks.length - 1; i >= 0; i--) {
             this.tasks[i].todoListId === id && this.removeTask(i);
         }
         const index = this.todolists.findIndex(todolist => todolist.id === id)
@@ -44,20 +42,7 @@ export default class TaskStore {
         index !== -1 && (this.todolists[index].title = title)
     }
 
-    //RENDER:
-    // {
-    //     this.todolists.map(list =>
-    //         <TodoList key={list.id} todolist={list} tasks={this.tasks.filter(task => task.todoListId === list.id)}/>
-    //     )
-    // }
 
-    // {
-    //     this.todolists.map(list =>
-    //         <TodoList key={list.id} todolist={list}>
-    //             {this.tasks.filter(task => task.todoListId === list.id).map(task => <Task task={task}/>)}
-    //         </TodoLost>
-    //     )
-    // }
     constructor(rootStore: RootStore, initState?: any) {
         this.rootStore = rootStore;
         makeAutoObservable(this);

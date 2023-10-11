@@ -34,10 +34,11 @@ const App: React.FC = observer(() => {
     <Root>
       <Header />
       <Body>
-        {taskStore.todolists.map((todolist, id) => (
+        {taskStore.todolists.map(todolist => (
           <Todolist
-            id={id}
+            id={todolist.id}
             todolist={todolist}
+            
             onEdit={(todolist: TTodolist) =>
               taskStore.editTodolist(todolist.id, todolist.title)
             }
@@ -49,3 +50,19 @@ const App: React.FC = observer(() => {
 })
 
 export default App
+
+
+  //RENDER:
+    // {
+    //     this.todolists.map(list =>
+    //         <TodoList key={list.id} todolist={list} tasks={this.tasks.filter(task => task.todoListId === list.id)}/>
+    //     )
+    // }
+
+    // {
+    //     this.todolists.map(list =>
+    //         <TodoList key={list.id} todolist={list}>
+    //             {this.tasks.filter(task => task.todoListId === list.id).map(task => <Task task={task}/>)}
+    //         </TodoLost>
+    //     )
+    // }
