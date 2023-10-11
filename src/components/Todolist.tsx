@@ -94,7 +94,7 @@ const TodoList: React.FC<IProps> = observer(({ id, onEdit, todolist }) => {
       </HeaderContainer>
       <SizedBox height={20} />
       <TasksContainer>
-        {taskStore.tasks.map((task, indexTask) => (
+        {taskStore.tasks.filter(task => task.todoListId === todolist.id).map((task, indexTask) => (
           <Task
             key={indexTask}
             task={task}
@@ -107,3 +107,20 @@ const TodoList: React.FC<IProps> = observer(({ id, onEdit, todolist }) => {
   )
 })
 export default TodoList
+
+
+
+  //RENDER:
+    // {
+    //     this.todolists.map(list =>
+    //         <TodoList key={list.id} todolist={list} tasks={this.tasks.filter(task => task.todoListId === list.id)}/>
+    //     )
+    // }
+
+    // {
+    //     this.todolists.map(list =>
+    //         <TodoList key={list.id} todolist={list}>
+    //             {this.tasks.filter(task => task.todoListId === list.id).map(task => <Task task={task}/>)}
+    //         </TodoLost>
+    //     )
+    // }
