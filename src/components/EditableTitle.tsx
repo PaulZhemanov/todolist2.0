@@ -6,17 +6,15 @@ import {
   StyledText,
 } from "@components/StyledInput"
 
-
 const Root = styled.div`
   display: flex;
   flex-direction: column;
   width: auto;
   height: 27px;
   `
-
 interface IProps extends IEditableInputProps {
 onChange?: (str: string) => void
-startTaskTitle?: string
+startTitle?: string
 }
 
 const EditableTitle: React.FC<IProps> = ({
@@ -26,11 +24,11 @@ const EditableTitle: React.FC<IProps> = ({
   textTransform,
   showUnderline = false,
   opacity,
-  startTaskTitle = "",
+  startTitle = "",
   inputLength,
   ...rest
 }) => {
-  const [title, setTitle] = useState<string>(startTaskTitle)
+  const [title, setTitle] = useState<string>(startTitle)
   const [editing, setEditing] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
 

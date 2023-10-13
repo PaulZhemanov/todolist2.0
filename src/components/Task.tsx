@@ -7,6 +7,8 @@ import { Tag } from "./Tag"
 import { Row } from "./Flex"
 import EditableTitle from "./EditableTitle"
 import { TTask } from "@stores/TaskStore"
+import { observer } from "mobx-react"
+
 
 const Root = styled.div`
   display: flex;
@@ -51,14 +53,14 @@ interface IProps {
   task: TTask
   onEdit: (task: TTask) => void
   onRemove: () => void
+  indexTask: number
 }
-const Task: React.FC<IProps> = ({ task, onRemove, onEdit }) => {
-  
+const Task: React.FC<IProps> = observer (({ task, onRemove, onEdit }) => {
   return (
     <Root>
       <StyledRow>
         <EditableTitle
-          startTaskTitle={task.taskTitle}
+          startTitle={task.taskTitle}
           fontSize="20px"
           fontWeight="700"
           textTransform="uppercase"
@@ -71,7 +73,7 @@ const Task: React.FC<IProps> = ({ task, onRemove, onEdit }) => {
       </StyledRow>
       <SizedBox height={10} />
       <EditableTitle
-        startTaskTitle={task.description}
+        startTitle={task.description}
         color="#1cd719"
         fontSize="16px"
         fontWeight="400"
@@ -85,6 +87,6 @@ const Task: React.FC<IProps> = ({ task, onRemove, onEdit }) => {
       </StyledRow>
     </Root>
   )
-}
+})
 
 export default Task

@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import {makeAutoObservable} from "mobx";
 import RootStore from "@stores/RootStore";
 
 export enum TASK_STATUS {
@@ -11,6 +11,7 @@ export type TTask = {
     description: string,
     status: TASK_STATUS
     todoListId: number
+    isDeleted: boolean
 }
 
 export type TTodolist = {
@@ -24,15 +25,22 @@ export default class TaskStore {
     public tasks: Array<TTask> = []
     public setTasks = (tasks: Array<TTask>) => this.tasks = tasks
     public addTask = (task: TTask) => this.tasks.push(task)
-    public removeTask = (index: number) => this.tasks.splice(index, 1)
+    public removeTask = (indexTask: number, id: number) => {
+        if (indexTask >= 0 && indexTask < this.tasks.length) {
+            if (this.tasks[indexTask].todoListId === id) {
+                this.tasks[indexTask].isDeleted = true;
+            }
+        }
+    }
+
     public editTask = (indexTask: number, task: TTask) => this.tasks[indexTask] = task
 
     public todolists: Array<TTodolist> = []
     public setTodolists = (todolists: Array<TTodolist>) => this.todolists = todolists
-    public addTodolist = (title: string) => this.todolists.push({ id: Math.random(), title })
+    public addTodolist = (title: string) => this.todolists.push({id: Math.random(), title})
     public removeTodolist = (id: number) => {
         for (let i = this.tasks.length - 1; i >= 0; i--) {
-            this.tasks[i].todoListId === id && this.removeTask(i);
+            this.tasks[i].todoListId === id && this.removeTask(i, id);
         }
         const index = this.todolists.findIndex(todolist => todolist.id === id)
         index !== -1 && this.todolists.splice(index, 1)
@@ -60,5 +68,4 @@ export default class TaskStore {
         todolists: this.todolists
     });
 }
-
 

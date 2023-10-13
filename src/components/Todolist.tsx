@@ -65,26 +65,27 @@ interface IProps {
   id: number
 }
 
-const TodoList: React.FC<IProps> = observer(({ id, onEdit, todolist }) => {
+const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
   const { taskStore } = useStores()
   const defaultTask: TTask = {
-    taskTitle: "New task",
+    taskTitle: "New",
     description: "Blablabla",
     status: TASK_STATUS.ACTIVE,
     todoListId: id,
+    isDeleted: false
   }
   return (
     <Root>
       <HeaderContainer>
         <EditableTitle
-          startTaskTitle="Enter task title"
+          startTitle="Enter todolist title"
           color="#d71919"
           fontSize="28px"
           fontWeight="600"
           opacity="0.7"
           showUnderline
           inputLength={20}
-          onChange={(title) => onEdit({ ...todolist, id })}
+          onChange={() => onEdit({ ...todolist, id })}
         />
         <Add onClick={() => taskStore.addTask(defaultTask)} />
         <Bin
@@ -94,33 +95,36 @@ const TodoList: React.FC<IProps> = observer(({ id, onEdit, todolist }) => {
       </HeaderContainer>
       <SizedBox height={20} />
       <TasksContainer>
-        {taskStore.tasks.filter(task => task.todoListId === todolist.id).map((task, indexTask) => (
-          <Task
-            key={indexTask}
-            task={task}
-            onEdit={(editedTask) => taskStore.editTask(indexTask, editedTask)}
-            onRemove={() => taskStore.removeTask(indexTask)}
-          />
-        ))}
+        {taskStore.tasks
+          .filter(
+            task => task.todoListId === todolist.id)
+          .filter( task => task.isDeleted === false)
+          .map((task, indexTask) => (
+            <Task
+              key={indexTask}
+              indexTask={indexTask}
+              task={task}
+              onEdit={(editedTask) => taskStore.editTask(indexTask, editedTask)}
+              onRemove={() => taskStore.removeTask(indexTask, todolist.id)}
+            />
+          ))}
       </TasksContainer>
     </Root>
   )
 })
 export default TodoList
 
+//RENDER:
+// {
+//     this.todolists.map(list =>
+//         <TodoList key={list.id} todolist={list} tasks={this.tasks.filter(task => task.todoListId === list.id)}/>
+//     )
+// }
 
-
-  //RENDER:
-    // {
-    //     this.todolists.map(list =>
-    //         <TodoList key={list.id} todolist={list} tasks={this.tasks.filter(task => task.todoListId === list.id)}/>
-    //     )
-    // }
-
-    // {
-    //     this.todolists.map(list =>
-    //         <TodoList key={list.id} todolist={list}>
-    //             {this.tasks.filter(task => task.todoListId === list.id).map(task => <Task task={task}/>)}
-    //         </TodoLost>
-    //     )
-    // }
+// {
+//     this.todolists.map(list =>
+//         <TodoList key={list.id} todolist={list}>
+//             {this.tasks.filter(task => task.todoListId === list.id).map(task => <Task task={task}/>)}
+//         </TodoLost>
+//     )
+// }
