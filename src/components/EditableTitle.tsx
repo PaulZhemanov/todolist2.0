@@ -14,7 +14,7 @@ const Root = styled.div`
   `
 interface IProps extends IEditableInputProps {
 onChange?: (str: string) => void
-startTitle?: string
+title?: string
 }
 
 const EditableTitle: React.FC<IProps> = ({
@@ -24,11 +24,11 @@ const EditableTitle: React.FC<IProps> = ({
   textTransform,
   showUnderline = false,
   opacity,
-  startTitle = "",
+  title = "",
   inputLength,
   ...rest
 }) => {
-  const [title, setTitle] = useState<string>(startTitle)
+  // const [title, setTitle] = useState<string>(startTitle)
   const [editing, setEditing] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -37,7 +37,7 @@ const EditableTitle: React.FC<IProps> = ({
   }
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setTitle(event?.target.value)
+    // setTitle(event?.target.value)
     rest.onChange && rest.onChange(event?.target.value ?? "")
   }
 

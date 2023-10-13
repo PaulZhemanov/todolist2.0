@@ -72,13 +72,12 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
     description: "Blablabla",
     status: TASK_STATUS.ACTIVE,
     todoListId: id,
-    isDeleted: false
   }
   return (
     <Root>
       <HeaderContainer>
         <EditableTitle
-          startTitle="Enter todolist title"
+          title="Enter todolist title"
           color="#d71919"
           fontSize="28px"
           fontWeight="600"
@@ -95,25 +94,22 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
       </HeaderContainer>
       <SizedBox height={20} />
       <TasksContainer>
-        {taskStore.tasks
-          .filter(
-            task => task.todoListId === todolist.id)
-          .filter( task => task.isDeleted === false)
-          .map((task, indexTask) => (
+        {taskStore.tasks.map((task, indexTask) =>
+          task.todoListId === todolist.id ? (
             <Task
               key={indexTask}
               indexTask={indexTask}
               task={task}
               onEdit={(editedTask) => taskStore.editTask(indexTask, editedTask)}
-              onRemove={() => taskStore.removeTask(indexTask, todolist.id)}
+              onRemove={() => taskStore.removeTask(indexTask)}
             />
-          ))}
+          ) : null
+        )}
       </TasksContainer>
     </Root>
   )
 })
 export default TodoList
-
 //RENDER:
 // {
 //     this.todolists.map(list =>

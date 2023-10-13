@@ -60,7 +60,7 @@ const Task: React.FC<IProps> = observer (({ task, onRemove, onEdit }) => {
     <Root>
       <StyledRow>
         <EditableTitle
-          startTitle={task.taskTitle}
+          title={task.taskTitle}
           fontSize="20px"
           fontWeight="700"
           textTransform="uppercase"
@@ -73,7 +73,7 @@ const Task: React.FC<IProps> = observer (({ task, onRemove, onEdit }) => {
       </StyledRow>
       <SizedBox height={10} />
       <EditableTitle
-        startTitle={task.description}
+        title={task.description}
         color="#1cd719"
         fontSize="16px"
         fontWeight="400"
