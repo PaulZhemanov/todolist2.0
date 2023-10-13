@@ -1,13 +1,19 @@
 import styled from "@emotion/styled"
 import React from "react"
-import { Text } from "./Text"
-import bin from "../assets/icons/Bin.svg"
+import bin from "@assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
-import check from "../assets/icons/Check.svg"
+import check from "@assets/icons/Check.svg"
 import { Tag } from "./Tag"
 import { Row } from "./Flex"
+import EditableTitle from "./EditableTitle"
+import {TTask} from "@stores/TaskStore";
+
 
 interface IProps {
+  task: TTask
+  onEdit: (task: TTask) => void
+  onRemove: () => void
+
   align?: "row" | "column"
   style?: React.CSSProperties
   bodyStyle?: React.CSSProperties
@@ -17,11 +23,8 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  width: 423px;
-  background: #f3f5f6;
-
-  border-radius: 12px;
   background: #fff;
+  border-radius: 12px;
   box-shadow: 0px 10px 0px 0px rgba(0, 0, 0, 0.15);
 
   & .remove-task-button,
@@ -49,35 +52,45 @@ const Check = styled.div`
   flex-shrink: 0;
 `
 
-const TaskTitle = styled(Text)`
-  font-size: 20px;
-  font-weight: 700;
-  text-transform: uppercase;
-`
-
-const Description = styled(Text)`
-  font-size: 16px;
-  font-weight: 400;
-`
 const StyledRow = styled(Row)`
   justify-content: space-between;
   align-items: center;
+  width: 333px;
 `
 
-const Task: React.FC<IProps> = ({ ...props }) => (
-  <Root {...props}>
-    <StyledRow>
-      <TaskTitle>task title</TaskTitle>
-      <Bin className="remove-task-button" />
-    </StyledRow>
-    <SizedBox height={10} />
-    <Description>task description</Description>
-    <SizedBox height={40} />
-    <StyledRow>
-      <Tag>Critical</Tag>
-      <Check className="check-button" />
-    </StyledRow>
-  </Root>
-)
+const Task: React.FC<IProps> = ({task, onRemove,onEdit }) => {
+
+  return (
+    <Root>
+      <StyledRow>
+        <EditableTitle
+          title={task.title}
+          fontSize="20px"
+          fontWeight="700"
+          textTransform="uppercase"
+          color="#363636"
+          showUnderline
+          inputLength={20}
+          onChange={(title) => onEdit({...task, title})}
+        />
+        <Bin className="remove-task-button" onClick={onRemove} />
+      </StyledRow>
+      <SizedBox height={10} />
+      <EditableTitle
+        title={task.description}
+        color="#1cd719"
+        fontSize="16px"
+        fontWeight="400"
+        inputLength={40}
+        onChange={(description) => onEdit({...task, description})}
+      />
+      <SizedBox height={40} />
+      <StyledRow>
+        <Tag>Critical</Tag>
+        <Check className="check-button" />
+      </StyledRow>
+    </Root>
+  )
+}
 
 export default Task

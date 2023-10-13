@@ -2,6 +2,7 @@
   "name": "todolist2.0",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://paulzhemanov.github.io/todolist2.0/",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@emotion/styled": "^11.11.0",
@@ -37,6 +38,8 @@
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
+    "mobx": "^6.10.2",
+    "mobx-react": "^9.0.1",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
@@ -66,7 +69,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [

@@ -1,9 +1,9 @@
 import React from "react"
 import "./App.css"
 import styled from "@emotion/styled"
-import TodoList from "./components/Todolist"
-import SizedBox from "./components/SizeBox"
-import Header from "./components/Header"
+import TodoList from "@components/Todolist"
+import SizedBox from "@components/SizeBox"
+import Header from "@components/Header"
 
 const Root = styled.div`
   display: flex;
@@ -30,10 +30,10 @@ function App() {
       <Header />
       <Body>
         <TodoList />
-        <SizedBox width={10} />
-        <TodoList />
-        <SizedBox width={10} />
-        <TodoList />
+        {/*<SizedBox width={10} />*/}
+        {/*<TodoList />*/}
+        {/*<SizedBox width={10} />*/}
+        {/*<TodoList />*/}
       </Body>
     </Root>
   )

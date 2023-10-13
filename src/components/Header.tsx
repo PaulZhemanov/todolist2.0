@@ -3,7 +3,10 @@ import React from "react"
 import { Text } from "./Text"
 import { Row } from "./Flex"
 import SizedBox from "./SizeBox"
-import add from "../assets/icons/Add.svg"
+import add from "@assets/icons/Add.svg"
+import {useStores} from "@stores";
+import Task from "@components/Task";
+import {TASK_STATUS, TTask} from "@stores/TaskStore";
 
 interface IProps {}
 
@@ -38,6 +41,12 @@ const StyledRow = styled(Row)`
 `
 
 const Header: React.FC<IProps> = () => {
+  const {taskStore} = useStores()
+  let defaultTask: TTask = {
+      title: "New task",
+      description: "Blablabla",
+      status: TASK_STATUS.ACTIVE
+  }
   return (
     <Root>
       <Title>Project name</Title>
@@ -45,7 +54,7 @@ const Header: React.FC<IProps> = () => {
 
       <StyledRow>
         <SubTitile>Add new column</SubTitile>
-        <Add />
+        <Add onClick={() => taskStore.addTask(defaultTask)} />
       </StyledRow>
     </Root>
   )
