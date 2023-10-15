@@ -28,7 +28,6 @@ const EditableTitle: React.FC<IProps> = ({
   inputLength,
   ...rest
 }) => {
-  // const [title, setTitle] = useState<string>(startTitle)
   const [editing, setEditing] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -37,7 +36,6 @@ const EditableTitle: React.FC<IProps> = ({
   }
 
   const handleTitleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    // setTitle(event?.target.value)
     rest.onChange && rest.onChange(event?.target.value ?? "")
   }
 

@@ -78,10 +78,9 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
       <HeaderContainer>
         <EditableTitle
           title={todolist.title}
-          color="#d71919"
           fontSize="28px"
           fontWeight="600"
-          opacity="0.7"
+          opacity="0.5"
           showUnderline
           inputLength={20}
           onChange={() => onEdit({ ...todolist, id })}

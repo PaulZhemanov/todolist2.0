@@ -8,8 +8,6 @@ import { useStores } from "@stores"
 import { TASK_STATUS } from "@src/stores/TaskStore"
 import { observer } from "mobx-react"
 
-// interface IProps {}
-
 const Add = styled.div`
   background: url(${AddMax});
   width: 48px; //!!!!!!!!!
@@ -50,15 +48,15 @@ const Header: React.FC = observer(() => {
         <SubTitile>Add new column</SubTitile>
         <Add
           onClick={() => {
-    taskStore.addTodolist("New todolist");
-    taskStore.addTask({
-      taskTitle: "New Task",
-      description: "Description of the new task",
-      status: TASK_STATUS.ACTIVE,
-      todoListId: taskStore.todolists[taskStore.todolists.length-1].id
-    })
-  }}
-          
+            taskStore.addTodolist("New todolist")
+            taskStore.addTask({
+              taskTitle: "New Task",
+              description: "Description of the new task",
+              status: TASK_STATUS.ACTIVE,
+              todoListId:
+                taskStore.todolists[taskStore.todolists.length - 1].id,
+            })
+          }}
         />
       </StyledRow>
     </Root>

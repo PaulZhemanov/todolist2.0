@@ -54,7 +54,6 @@ interface IProps {
   onRemove: () => void
 }
 
-
 const Task: React.FC<IProps> = observer(({ task, onRemove, onEdit }) => {
   return (
     <Root>
@@ -64,7 +63,6 @@ const Task: React.FC<IProps> = observer(({ task, onRemove, onEdit }) => {
           fontSize="20px"
           fontWeight="700"
           textTransform="uppercase"
-          color="#363636"
           showUnderline
           inputLength={20}
           onChange={(taskTitle) => onEdit({ ...task, taskTitle })}
@@ -74,7 +72,6 @@ const Task: React.FC<IProps> = observer(({ task, onRemove, onEdit }) => {
       <SizedBox height={10} />
       <EditableTitle
         title={task.description}
-        color="#1cd719"
         fontSize="16px"
         fontWeight="400"
         inputLength={40}
