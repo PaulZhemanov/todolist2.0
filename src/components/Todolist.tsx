@@ -67,11 +67,11 @@ interface IProps {
 
 const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
   const defaultTask: TTask = {
-      taskTitle: "New",
-      description: "Blablabla",
-      status: TASK_STATUS.ACTIVE,
-      todoListId: id,
-    }
+    taskTitle: "New",
+    description: "Blablabla",
+    status: TASK_STATUS.ACTIVE,
+    todoListId: id,
+  }
   const { taskStore } = useStores()
   return (
     <Root>
@@ -83,7 +83,7 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
           opacity="0.5"
           showUnderline
           inputLength={20}
-          onChange={() => onEdit({ ...todolist, id })}
+          onChange={(title) => onEdit({ ...todolist, title })}
         />
         <Add onClick={() => taskStore.addTask(defaultTask)} />
         <Bin
@@ -94,11 +94,11 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
       <SizedBox height={20} />
       <TasksContainer>
         {taskStore.tasks.map((task, indexTask) =>
-          task.todoListId === todolist.id? (
+          task.todoListId === todolist.id ? (
             <Task
               key={indexTask}
               task={task}
-              onEdit={(editedTask) => taskStore.editTask(indexTask, editedTask)}
+              onEdit={(editedTask: TTask) => taskStore.editTask(indexTask, editedTask)}
               onRemove={() => taskStore.removeTask(indexTask)}
             />
           ) : null

@@ -29,7 +29,6 @@ const Root = styled.div`
     }
   }
 `
-
 const Bin = styled.div`
   background: url(${bin});
   width: 25px;
@@ -41,13 +40,11 @@ const Check = styled.div`
   height: 24px;
   flex-shrink: 0;
 `
-
 const StyledRow = styled(Row)`
   justify-content: space-between;
   align-items: center;
   width: 333px;
 `
-
 interface IProps {
   task: TTask
   onEdit: (task: TTask) => void

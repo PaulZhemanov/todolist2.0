@@ -13,7 +13,6 @@ const Add = styled.div`
   width: 48px; //!!!!!!!!!
   height: 48px;
 `
-
 const Root = styled.div`
   display: flex;
   flex-direction: column;
@@ -35,7 +34,6 @@ const StyledRow = styled(Row)`
   align-items: center;
   gap: 24px;
 `
-
 const Header: React.FC = observer(() => {
   const { taskStore } = useStores()
 
@@ -43,7 +41,6 @@ const Header: React.FC = observer(() => {
     <Root>
       <Title>Project name</Title>
       <SizedBox height={24} />
-
       <StyledRow>
         <SubTitile>Add new column</SubTitile>
         <Add

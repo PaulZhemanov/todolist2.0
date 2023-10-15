@@ -16,7 +16,6 @@ const Root = styled.div`
   height: 100vh;
   align-items: start;
 `
-
 const Body = styled.div`
   display: flex;
   height: 100vh;
@@ -26,7 +25,6 @@ const Body = styled.div`
   max-width: 1280px; */
   gap:20px
 `
-
 const App: React.FC = observer(() => {
   const { taskStore } = useStores()
 

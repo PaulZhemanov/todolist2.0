@@ -19,7 +19,7 @@ title?: string
 
 const EditableTitle: React.FC<IProps> = ({
   fontSize,
-  color,
+  // color,
   fontWeight,
   textTransform,
   showUnderline = false,
@@ -68,7 +68,7 @@ const EditableTitle: React.FC<IProps> = ({
           onBlur={handleTitleFix}
           onKeyDown={handleTitleKeyDown}
           fontSize={fontSize}
-          color={color}
+          // color={color}
           fontWeight={fontWeight}
           textTransform={textTransform}
           showUnderline={showUnderline}
@@ -82,7 +82,7 @@ const EditableTitle: React.FC<IProps> = ({
           textTransform={textTransform}
           opacity={opacity}
           fontWeight={fontWeight}
-          color={color}
+          // color={color}
         >
           {title}
         </StyledText>
