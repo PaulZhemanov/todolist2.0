@@ -5,8 +5,10 @@ import { Row } from "./Flex"
 import SizedBox from "./SizeBox"
 import AddMax from "@assets/icons/AddMax.svg"
 import { useStores } from "@stores"
+import { TASK_STATUS } from "@src/stores/TaskStore"
+import { observer } from "mobx-react"
 
-interface IProps {}
+// interface IProps {}
 
 const Add = styled.div`
   background: url(${AddMax});
@@ -36,7 +38,7 @@ const StyledRow = styled(Row)`
   gap: 24px;
 `
 
-const Header: React.FC<IProps> = () => {
+const Header: React.FC = observer(() => {
   const { taskStore } = useStores()
 
   return (
@@ -46,9 +48,20 @@ const Header: React.FC<IProps> = () => {
 
       <StyledRow>
         <SubTitile>Add new column</SubTitile>
-        <Add onClick={() => taskStore.addTodolist("New todolist")} />
+        <Add
+          onClick={() => {
+    taskStore.addTodolist("New todolist");
+    taskStore.addTask({
+      taskTitle: "New Task",
+      description: "Description of the new task",
+      status: TASK_STATUS.ACTIVE,
+      todoListId: taskStore.todolists[taskStore.todolists.length-1].id
+    })
+  }}
+          
+        />
       </StyledRow>
     </Root>
   )
-}
+})
 export default Header

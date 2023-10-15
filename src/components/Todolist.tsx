@@ -63,22 +63,21 @@ interface IProps {
   onEdit: (todolist: TTodolist) => void
   todolist: TTodolist
   id: number
-
 }
 
 const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
-  const { taskStore } = useStores()
   const defaultTask: TTask = {
-    taskTitle: "New",
-    description: "Blablabla",
-    status: TASK_STATUS.ACTIVE,
-    todoListId: id,
-  }
+      taskTitle: "New",
+      description: "Blablabla",
+      status: TASK_STATUS.ACTIVE,
+      todoListId: id,
+    }
+  const { taskStore } = useStores()
   return (
     <Root>
       <HeaderContainer>
         <EditableTitle
-          title="Enter todolist title"
+          title={todolist.title}
           color="#d71919"
           fontSize="28px"
           fontWeight="600"

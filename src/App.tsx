@@ -24,7 +24,7 @@ const Body = styled.div`
   flex: 1;
   /* min-width: 980px;
   max-width: 1280px; */
-  gap:10px
+  gap:20px
 `
 
 const App: React.FC = observer(() => {
@@ -32,7 +32,7 @@ const App: React.FC = observer(() => {
 
   return (
     <Root>
-      <Header />
+      <Header/>
       <Body>
         {taskStore.todolists.map((todolist) => (
           <Todolist

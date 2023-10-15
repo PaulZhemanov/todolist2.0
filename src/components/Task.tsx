@@ -53,6 +53,8 @@ interface IProps {
   onEdit: (task: TTask) => void
   onRemove: () => void
 }
+
+
 const Task: React.FC<IProps> = observer(({ task, onRemove, onEdit }) => {
   return (
     <Root>
