@@ -5,8 +5,6 @@ import { Row } from "./Flex"
 import SizedBox from "./SizeBox"
 import AddMax from "@assets/icons/AddMax.svg"
 import { useStores } from "@stores"
-import Task from "@components/Task"
-import { TASK_STATUS, TTask, TTodolist } from "@stores/TaskStore"
 
 interface IProps {}
 

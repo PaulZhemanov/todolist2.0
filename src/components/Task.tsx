@@ -9,7 +9,6 @@ import EditableTitle from "./EditableTitle"
 import { TTask } from "@stores/TaskStore"
 import { observer } from "mobx-react"
 
-
 const Root = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,45 +16,44 @@ const Root = styled.div`
   background: #fff;
   border-radius: 12px;
   box-shadow: 0px 10px 0px 0px rgba(0, 0, 0, 0.15);
-  
+
   & .remove-task-button,
   & .check-button {
     display: none;
   }
-  
+
   :hover {
     & .remove-task-button,
     & .check-button {
       display: block;
     }
   }
-  `
+`
 
 const Bin = styled.div`
   background: url(${bin});
   width: 25px;
   height: 25px;
-  `
+`
 const Check = styled.div`
   background: url(${check});
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-  `
+`
 
 const StyledRow = styled(Row)`
   justify-content: space-between;
   align-items: center;
   width: 333px;
-  `
+`
 
 interface IProps {
   task: TTask
   onEdit: (task: TTask) => void
   onRemove: () => void
-  indexTask: number
 }
-const Task: React.FC<IProps> = observer (({ task, onRemove, onEdit }) => {
+const Task: React.FC<IProps> = observer(({ task, onRemove, onEdit }) => {
   return (
     <Root>
       <StyledRow>

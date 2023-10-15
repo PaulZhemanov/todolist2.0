@@ -11,20 +11,20 @@ import { observer } from "mobx-react"
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 52px 0;
+  padding: 52px 100px;
   box-sizing: border-box;
   height: 100vh;
-  align-items: center;
+  align-items: start;
 `
 
 const Body = styled.div`
   display: flex;
-  justify-content: space-between;
   height: 100vh;
   padding: 0 10px;
   flex: 1;
-  min-width: 980px;
-  max-width: 1280px;
+  /* min-width: 980px;
+  max-width: 1280px; */
+  gap:10px
 `
 
 const App: React.FC = observer(() => {
@@ -40,7 +40,7 @@ const App: React.FC = observer(() => {
             id={todolist.id}
             todolist={todolist}
             onEdit={(todolist: TTodolist) =>
-            taskStore.editTodolist(todolist.id, todolist.title)
+              taskStore.editTodolist(todolist.id, todolist.title)
             }
           />
         ))}
@@ -50,18 +50,3 @@ const App: React.FC = observer(() => {
 })
 
 export default App
-
-//RENDER:
-// {
-//     this.todolists.map(list =>
-//         <TodoList key={list.id} todolist={list} tasks={this.tasks.filter(task => task.todoListId === list.id)}/>
-//     )
-// }
-
-// {
-//     this.todolists.map(list =>
-//         <TodoList key={list.id} todolist={list}>
-//             {this.tasks.filter(task => task.todoListId === list.id).map(task => <Task task={task}/>)}
-//         </TodoLost>
-//     )
-// }

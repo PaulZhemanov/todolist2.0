@@ -63,6 +63,7 @@ interface IProps {
   onEdit: (todolist: TTodolist) => void
   todolist: TTodolist
   id: number
+
 }
 
 const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
@@ -95,10 +96,9 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
       <SizedBox height={20} />
       <TasksContainer>
         {taskStore.tasks.map((task, indexTask) =>
-          task.todoListId === todolist.id ? (
+          task.todoListId === todolist.id? (
             <Task
               key={indexTask}
-              indexTask={indexTask}
               task={task}
               onEdit={(editedTask) => taskStore.editTask(indexTask, editedTask)}
               onRemove={() => taskStore.removeTask(indexTask)}
@@ -110,17 +110,3 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
   )
 })
 export default TodoList
-//RENDER:
-// {
-//     this.todolists.map(list =>
-//         <TodoList key={list.id} todolist={list} tasks={this.tasks.filter(task => task.todoListId === list.id)}/>
-//     )
-// }
-
-// {
-//     this.todolists.map(list =>
-//         <TodoList key={list.id} todolist={list}>
-//             {this.tasks.filter(task => task.todoListId === list.id).map(task => <Task task={task}/>)}
-//         </TodoLost>
-//     )
-// }

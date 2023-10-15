@@ -25,7 +25,6 @@ export default class TaskStore {
     public setTasks = (tasks: Array<TTask>) => this.tasks = tasks
     public addTask = (task: TTask) => this.tasks.push(task)
     public removeTask = (indexTask: number) => this.tasks.splice(indexTask, 1)
-
     public editTask = (indexTask: number, task: TTask) => this.tasks[indexTask] = task
 
     public todolists: Array<TTodolist> = []
