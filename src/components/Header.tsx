@@ -42,7 +42,7 @@ const Header: React.FC = observer(() => {
       <Title>Project name</Title>
       <SizedBox height={24} />
       <StyledRow>
-        <SubTitile>Add new column</SubTitile>
+        <SubTitile>Add Ncew Todolist</SubTitile>
         <Add
           onClick={() => {
             taskStore.addTodolist("New todolist")

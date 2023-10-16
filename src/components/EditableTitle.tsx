@@ -10,7 +10,7 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   width: auto;
-  height: 27px;
+  height: fit-content;
   `
 interface IProps extends IEditableInputProps {
 onChange?: (str: string) => void
@@ -19,7 +19,6 @@ title?: string
 
 const EditableTitle: React.FC<IProps> = ({
   fontSize,
-  // color,
   fontWeight,
   textTransform,
   showUnderline = false,
@@ -68,7 +67,6 @@ const EditableTitle: React.FC<IProps> = ({
           onBlur={handleTitleFix}
           onKeyDown={handleTitleKeyDown}
           fontSize={fontSize}
-          // color={color}
           fontWeight={fontWeight}
           textTransform={textTransform}
           showUnderline={showUnderline}
@@ -82,7 +80,6 @@ const EditableTitle: React.FC<IProps> = ({
           textTransform={textTransform}
           opacity={opacity}
           fontWeight={fontWeight}
-          // color={color}
         >
           {title}
         </StyledText>
