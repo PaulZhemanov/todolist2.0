@@ -42,7 +42,6 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 373px;
-  height: fit-content;
 `
 const TasksContainer = styled.div`
   display: inline-flex;
@@ -67,8 +66,8 @@ interface IProps {
 
 const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
   const defaultTask: TTask = {
-    taskTitle: "New",
-    description: "Blablabla",
+    taskTitle: "New Task",
+    description: "Description",
     status: TASK_STATUS.ACTIVE,
     todoListId: id,
   }
