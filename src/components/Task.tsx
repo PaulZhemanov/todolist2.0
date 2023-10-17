@@ -58,7 +58,7 @@ const Task: React.FC<IProps> = observer(({ task, onRemove, onEdit }) => {
         <EditableTitle
           title={task.taskTitle}
           fontSize="20px"
-          fontWeight="700"
+          fontWeight={700}
           textTransform="uppercase"
           showUnderline
           inputLength={20}
@@ -70,7 +70,7 @@ const Task: React.FC<IProps> = observer(({ task, onRemove, onEdit }) => {
       <EditableTitle
         title={task.description}
         fontSize="16px"
-        fontWeight="400"
+        fontWeight={400}
         inputLength={40}
         onChange={(description) => onEdit({ ...task, description })}
       />

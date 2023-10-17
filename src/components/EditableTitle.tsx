@@ -10,8 +10,8 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   width: auto;
-  height: fit-content;
-  `
+  height: 27px;
+`
 interface IProps extends IEditableInputProps {
 onChange?: (str: string) => void
 title?: string
