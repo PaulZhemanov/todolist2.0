@@ -6,7 +6,7 @@ import Task from "./Task"
 import EditableTitle from "./EditableTitle"
 import { useStores } from "@stores"
 import { observer } from "mobx-react"
-import AddMin from "@assets/icons/AddMin.svg"
+import addMinIcon from "@assets/icons/AddMin.svg"
 import { TASK_STATUS, TTask, TTodolist } from "@src/stores/TaskStore"
 
 const Bin = styled.div`
@@ -15,8 +15,8 @@ const Bin = styled.div`
   height: 25px;
 `
 const Add = styled.div`
-  background: url(${AddMin});
-  width: 25px; //!!!!!!!!!
+  background: url(${addMinIcon});
+  width: 25px;
   height: 25px;
 `
 const Root = styled.div`
@@ -42,6 +42,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 373px;
+  height: fit-content;
 `
 const TasksContainer = styled.div`
   display: inline-flex;
@@ -61,15 +62,14 @@ const TasksContainer = styled.div`
 interface IProps {
   onEdit: (todolist: TTodolist) => void
   todolist: TTodolist
-  id: number
 }
 
-const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
+const TodoList: React.FC<IProps> = observer(({ onEdit, todolist}) => {
   const defaultTask: TTask = {
     taskTitle: "New Task",
     description: "Description",
     status: TASK_STATUS.ACTIVE,
-    todoListId: id,
+    todoListId: todolist.id,
   }
   const { taskStore } = useStores()
   return (
@@ -87,7 +87,7 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
         <Add onClick={() => taskStore.addTask(defaultTask)} />
         <Bin
           className="remove-todolist-button"
-          onClick={() => taskStore.removeTodolist(id)}
+          onClick={() => taskStore.removeTodolist(todolist.id)}
         />
       </HeaderContainer>
       <SizedBox height={20} />
@@ -97,7 +97,7 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist, id }) => {
             <Task
               key={indexTask}
               task={task}
-              onEdit={(editedTask: TTask) => taskStore.editTask(indexTask, editedTask)}
+              onEdit={(editedTask) => taskStore.editTask(indexTask, editedTask)}
               onRemove={() => taskStore.removeTask(indexTask)}
             />
           ) : null

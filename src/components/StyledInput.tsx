@@ -15,6 +15,7 @@ export const StyledInput = styled.input<IEditableInputProps>`
   border: none;
   outline: none;
   background: transparent;
+  box-sizing: border-box;
   font-size: ${(props) => (props.fontSize ? props.fontSize : "inherit")};
   opacity: ${(props) => (props.opacity ? props.opacity : "inherit")};
   color: ${(props) => (props.color ? props.color : "inherit")};

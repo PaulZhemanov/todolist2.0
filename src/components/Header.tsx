@@ -42,16 +42,15 @@ const Header: React.FC = observer(() => {
       <Title>Project name</Title>
       <SizedBox height={24} />
       <StyledRow>
-        <SubTitile>Add New Todolist</SubTitile>
+        <SubTitile>Add New List</SubTitile>
         <Add
           onClick={() => {
-            taskStore.addTodolist("New todolist")
+            const todoListId = taskStore.addTodolist("New List")
             taskStore.addTask({
               taskTitle: "New Task",
               description: "Description",
               status: TASK_STATUS.ACTIVE,
-              todoListId:
-                taskStore.todolists[taskStore.todolists.length - 1].id,
+              todoListId
             })
           }}
         />

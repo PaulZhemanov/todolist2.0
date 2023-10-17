@@ -22,24 +22,26 @@ export default class TaskStore {
     public readonly rootStore: RootStore;
 
     public tasks: Array<TTask> = []
-    public setTasks = (tasks: Array<TTask>) => this.tasks = tasks
+    private setTasks = (tasks: Array<TTask>) => this.tasks = tasks
     public addTask = (task: TTask) => this.tasks.push(task)
     public removeTask = (indexTask: number) => this.tasks.splice(indexTask, 1)
     public editTask = (indexTask: number, task: TTask) => this.tasks[indexTask] = task
 
     public todolists: Array<TTodolist> = []
-    public setTodolists = (todolists: Array<TTodolist>) => this.todolists = todolists
-    public addTodolist = (title: string) => this.todolists.push({id: Math.random(), title})
+    private setTodolists = (todolists: Array<TTodolist>) => this.todolists = todolists
+    public addTodolist = (title: string) => {
+        const id = Math.random();
+        this.todolists.push({ id, title });
+        return id;
+}
     public removeTodolist = (id: number) => {
-        for (let i = this.tasks.length - 1; i >= 0; i--) {
-            this.tasks[i].todoListId === id && this.removeTask(i);
-        }
-        const index = this.todolists.findIndex(todolist => todolist.id === id)
-        index !== -1 && this.todolists.splice(index, 1)
+        const tasksToRemove = this.tasks.filter(task => task.todoListId === id);
+        tasksToRemove.forEach(task => this.removeTask(this.tasks.indexOf(task)));
+        this.todolists = this.todolists.filter(todolist => todolist.id !== id);
     }
     public editTodolist = (id: number, title: string) => {
-        const index = this.todolists.findIndex(todolist => todolist.id === id)
-        index !== -1 && (this.todolists[index].title = title)
+        const todolist = this.todolists.find(todolist => todolist.id === id);
+        if (todolist) todolist.title = title;
     }
 
 

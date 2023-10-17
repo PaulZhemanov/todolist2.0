@@ -21,8 +21,6 @@ const Body = styled.div`
   height: 100vh;
   padding: 0 10px;
   flex: 1;
-  /* min-width: 980px;
-  max-width: 1280px; */
   gap:20px
 `
 const App: React.FC = observer(() => {
@@ -35,7 +33,6 @@ const App: React.FC = observer(() => {
         {taskStore.todolists.map((todolist) => (
           <Todolist
             key={todolist.id}
-            id={todolist.id}
             todolist={todolist}
             onEdit={(todolist: TTodolist) =>
               taskStore.editTodolist(todolist.id, todolist.title)
