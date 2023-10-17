@@ -3,21 +3,16 @@ import React from "react"
 import { Text } from "./Text"
 import { Row } from "./Flex"
 import SizedBox from "./SizeBox"
-import add from "@assets/icons/Add.svg"
-import {useStores} from "@stores";
-import Task from "@components/Task";
-import {TASK_STATUS, TTask} from "@stores/TaskStore";
+import AddMax from "@assets/icons/AddMax.svg"
+import { useStores } from "@stores"
+import { TASK_STATUS } from "@src/stores/TaskStore"
+import { observer } from "mobx-react"
 
-interface IProps {}
-
-const Icon = styled.div`
-  width: 48px;
+const Add = styled.div`
+  background: url(${AddMax});
+  width: 48px; //!!!!!!!!!
   height: 48px;
 `
-const Add = styled(Icon)`
-  background: url(${add});
-`
-
 const Root = styled.div`
   display: flex;
   flex-direction: column;
@@ -39,24 +34,28 @@ const StyledRow = styled(Row)`
   align-items: center;
   gap: 24px;
 `
+const Header: React.FC = observer(() => {
+  const { taskStore } = useStores()
 
-const Header: React.FC<IProps> = () => {
-  const {taskStore} = useStores()
-  let defaultTask: TTask = {
-      title: "New task",
-      description: "Blablabla",
-      status: TASK_STATUS.ACTIVE
-  }
   return (
     <Root>
       <Title>Project name</Title>
       <SizedBox height={24} />
-
       <StyledRow>
-        <SubTitile>Add new column</SubTitile>
-        <Add onClick={() => taskStore.addTask(defaultTask)} />
+        <SubTitile>Add New List</SubTitile>
+        <Add
+          onClick={() => {
+            const todoListId = taskStore.addTodolist("New List")
+            taskStore.addTask({
+              taskTitle: "New Task",
+              description: "Description",
+              status: TASK_STATUS.ACTIVE,
+              todoListId
+            })
+          }}
+        />
       </StyledRow>
     </Root>
   )
-}
+})
 export default Header

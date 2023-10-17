@@ -4,22 +4,21 @@ import bin from "@assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import Task from "./Task"
 import EditableTitle from "./EditableTitle"
-import {useStores} from "@stores";
-import { observer } from "mobx-react";
-
+import { useStores } from "@stores"
+import { observer } from "mobx-react"
+import addMinIcon from "@assets/icons/AddMin.svg"
+import { TASK_STATUS, TTask, TTodolist } from "@src/stores/TaskStore"
 
 const Bin = styled.div`
   background: url(${bin});
   width: 25px;
   height: 25px;
 `
-
-interface IProps {
-  align?: "row" | "column"
-  style?: React.CSSProperties
-  bodyStyle?: React.CSSProperties
-}
-
+const Add = styled.div`
+  background: url(${addMinIcon});
+  width: 25px;
+  height: 25px;
+`
 const Root = styled.div`
   display: flex;
   flex-direction: column;
@@ -38,14 +37,13 @@ const Root = styled.div`
     }
   }
 `
-
 const HeaderContainer = styled.div`
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: center;
   width: 373px;
+  height: fit-content;
 `
-
 const TasksContainer = styled.div`
   display: inline-flex;
   justify-content: start;
@@ -61,33 +59,49 @@ const TasksContainer = styled.div`
     margin-bottom: 0;
   }
 `
+interface IProps {
+  onEdit: (todolist: TTodolist) => void
+  todolist: TTodolist
+}
 
-const TodoList: React.FC<IProps> = observer(() => {
-  const {taskStore} = useStores()
+const TodoList: React.FC<IProps> = observer(({ onEdit, todolist}) => {
+  const defaultTask: TTask = {
+    taskTitle: "New Task",
+    description: "Description",
+    status: TASK_STATUS.ACTIVE,
+    todoListId: todolist.id,
+  }
+  const { taskStore } = useStores()
   return (
     <Root>
       <HeaderContainer>
         <EditableTitle
-          startTitle="Enter todolist title"
-          color="#d71919"
+          title={todolist.title}
           fontSize="28px"
           fontWeight="600"
-          opacity="0.7"
+          opacity="0.5"
           showUnderline
           inputLength={20}
+          onChange={(title) => onEdit({ ...todolist, title })}
         />
-        <Bin className="remove-todolist-button" />
+        <Add onClick={() => taskStore.addTask(defaultTask)} />
+        <Bin
+          className="remove-todolist-button"
+          onClick={() => taskStore.removeTodolist(todolist.id)}
+        />
       </HeaderContainer>
       <SizedBox height={20} />
       <TasksContainer>
-          {taskStore.tasks.map((task, index) =>
-              <Task
-                  key={index}
-                  task={task}
-                  onEdit={(task) => taskStore.editTask(index, task)}
-                  onRemove={() => taskStore.removeTask(index)}
-              />
-          )}
+        {taskStore.tasks.map((task, indexTask) =>
+          task.todoListId === todolist.id ? (
+            <Task
+              key={indexTask}
+              task={task}
+              onEdit={(editedTask) => taskStore.editTask(indexTask, editedTask)}
+              onRemove={() => taskStore.removeTask(indexTask)}
+            />
+          ) : null
+        )}
       </TasksContainer>
     </Root>
   )

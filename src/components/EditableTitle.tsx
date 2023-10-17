@@ -1,22 +1,24 @@
 import styled from "@emotion/styled"
 import React, { ChangeEvent, useEffect, useRef, useState } from "react"
-import {IEditableInputProps, StyledInput, StyledText} from "@components/StyledInput";
-
-interface IProps extends IEditableInputProps{
-  onChange?: (str: string) => void
-  title?: string
-}
+import {
+  IEditableInputProps,
+  StyledInput,
+  StyledText,
+} from "@components/StyledInput"
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
   width: auto;
-  height: 27px;
-`
+  height: fit-content;
+  `
+interface IProps extends IEditableInputProps {
+onChange?: (str: string) => void
+title?: string
+}
 
 const EditableTitle: React.FC<IProps> = ({
   fontSize,
-  color,
   fontWeight,
   textTransform,
   showUnderline = false,
@@ -25,8 +27,6 @@ const EditableTitle: React.FC<IProps> = ({
   inputLength,
   ...rest
 }) => {
-  // const [title, setTitle] = useState<string>(startTitle)
-  // const inputStore = new InputStore()
   const [editing, setEditing] = useState<boolean>(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -67,7 +67,6 @@ const EditableTitle: React.FC<IProps> = ({
           onBlur={handleTitleFix}
           onKeyDown={handleTitleKeyDown}
           fontSize={fontSize}
-          color={color}
           fontWeight={fontWeight}
           textTransform={textTransform}
           showUnderline={showUnderline}
@@ -81,7 +80,6 @@ const EditableTitle: React.FC<IProps> = ({
           textTransform={textTransform}
           opacity={opacity}
           fontWeight={fontWeight}
-          color={color}
         >
           {title}
         </StyledText>

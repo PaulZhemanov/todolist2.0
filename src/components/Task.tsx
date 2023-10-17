@@ -6,18 +6,8 @@ import check from "@assets/icons/Check.svg"
 import { Tag } from "./Tag"
 import { Row } from "./Flex"
 import EditableTitle from "./EditableTitle"
-import {TTask} from "@stores/TaskStore";
-
-
-interface IProps {
-  task: TTask
-  onEdit: (task: TTask) => void
-  onRemove: () => void
-
-  align?: "row" | "column"
-  style?: React.CSSProperties
-  bodyStyle?: React.CSSProperties
-}
+import { TTask } from "@stores/TaskStore"
+import { observer } from "mobx-react"
 
 const Root = styled.div`
   display: flex;
@@ -39,7 +29,6 @@ const Root = styled.div`
     }
   }
 `
-
 const Bin = styled.div`
   background: url(${bin});
   width: 25px;
@@ -51,38 +40,39 @@ const Check = styled.div`
   height: 24px;
   flex-shrink: 0;
 `
-
 const StyledRow = styled(Row)`
   justify-content: space-between;
   align-items: center;
   width: 333px;
 `
+interface IProps {
+  task: TTask
+  onEdit: (task: TTask) => void
+  onRemove: () => void
+}
 
-const Task: React.FC<IProps> = ({task, onRemove,onEdit }) => {
-
+const Task: React.FC<IProps> = observer(({ task, onRemove, onEdit }) => {
   return (
     <Root>
       <StyledRow>
         <EditableTitle
-          title={task.title}
+          title={task.taskTitle}
           fontSize="20px"
           fontWeight="700"
           textTransform="uppercase"
-          color="#363636"
           showUnderline
           inputLength={20}
-          onChange={(title) => onEdit({...task, title})}
+          onChange={(taskTitle) => onEdit({ ...task, taskTitle })}
         />
         <Bin className="remove-task-button" onClick={onRemove} />
       </StyledRow>
       <SizedBox height={10} />
       <EditableTitle
         title={task.description}
-        color="#1cd719"
         fontSize="16px"
         fontWeight="400"
         inputLength={40}
-        onChange={(description) => onEdit({...task, description})}
+        onChange={(description) => onEdit({ ...task, description })}
       />
       <SizedBox height={40} />
       <StyledRow>
@@ -91,6 +81,6 @@ const Task: React.FC<IProps> = ({task, onRemove,onEdit }) => {
       </StyledRow>
     </Root>
   )
-}
+})
 
 export default Task

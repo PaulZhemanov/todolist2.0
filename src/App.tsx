@@ -1,42 +1,47 @@
 import React from "react"
 import "./App.css"
 import styled from "@emotion/styled"
-import TodoList from "@components/Todolist"
 import SizedBox from "@components/SizeBox"
 import Header from "@components/Header"
+import { useStores } from "./stores"
+import Todolist from "./components/Todolist"
+import { TTodolist } from "./stores/TaskStore"
+import { observer } from "mobx-react"
 
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 52px 0;
+  padding: 52px 100px;
   box-sizing: border-box;
   height: 100vh;
-  align-items: center;
+  align-items: start;
 `
-
 const Body = styled.div`
   display: flex;
-  justify-content: space-between;
   height: 100vh;
   padding: 0 10px;
   flex: 1;
-  min-width: 980px;
-  max-width: 1280px;
+  gap:20px
 `
+const App: React.FC = observer(() => {
+  const { taskStore } = useStores()
 
-function App() {
   return (
     <Root>
-      <Header />
+      <Header/>
       <Body>
-        <TodoList />
-        {/*<SizedBox width={10} />*/}
-        {/*<TodoList />*/}
-        {/*<SizedBox width={10} />*/}
-        {/*<TodoList />*/}
+        {taskStore.todolists.map((todolist) => (
+          <Todolist
+            key={todolist.id}
+            todolist={todolist}
+            onEdit={(todolist: TTodolist) =>
+              taskStore.editTodolist(todolist.id, todolist.title)
+            }
+          />
+        ))}
       </Body>
     </Root>
   )
-}
+})
 
 export default App

@@ -7,9 +7,15 @@ export enum TASK_STATUS {
 }
 
 export type TTask = {
-    title: string,
+    taskTitle: string,
     description: string,
     status: TASK_STATUS
+    todoListId: number
+}
+
+export type TTodolist = {
+    id: number,
+    title: string,
 }
 
 export default class TaskStore {
@@ -18,18 +24,42 @@ export default class TaskStore {
     public tasks: Array<TTask> = []
     private setTasks = (tasks: Array<TTask>) => this.tasks = tasks
     public addTask = (task: TTask) => this.tasks.push(task)
-    public removeTask = (index: number) => this.tasks.splice(index, 1)
-    public editTask = (index: number, task: TTask) => this.tasks[index] = task
+    public removeTask = (indexTask: number) => this.tasks.splice(indexTask, 1)
+    public editTask = (indexTask: number, task: TTask) => this.tasks[indexTask] = task
+
+    public todolists: Array<TTodolist> = []
+    private setTodolists = (todolists: Array<TTodolist>) => this.todolists = todolists
+    public addTodolist = (title: string) => {
+        const id = Math.random();
+        this.todolists.push({ id, title });
+        return id;
+}
+    public removeTodolist = (id: number) => {
+        const tasksToRemove = this.tasks.filter(task => task.todoListId === id);
+        tasksToRemove.forEach(task => this.removeTask(this.tasks.indexOf(task)));
+        this.todolists = this.todolists.filter(todolist => todolist.id !== id);
+    }
+    public editTodolist = (id: number, title: string) => {
+        const todolist = this.todolists.find(todolist => todolist.id === id);
+        if (todolist) todolist.title = title;
+    }
+
 
     constructor(rootStore: RootStore, initState?: any) {
         this.rootStore = rootStore;
         makeAutoObservable(this);
-        if (initState?.tasks != null && initState.tasks.length > 0){
+        if (initState?.tasks != null && initState.tasks.length > 0) {
             this.setTasks(initState.tasks)
+        }
+        if (initState?.todolists != null && initState.todolists.length > 0) {
+            this.setTodolists(initState.todolists)
         }
     }
 
-    serialize = () => ({tasks: this.tasks});
-}
 
+    serialize = () => ({
+        tasks: this.tasks,
+        todolists: this.todolists
+    });
+}
 
