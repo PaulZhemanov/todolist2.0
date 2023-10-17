@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React from "react"
+import React, { useState } from "react"
 import bin from "@assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import Task from "./Task"
@@ -64,7 +64,8 @@ interface IProps {
   todolist: TTodolist
 }
 
-const TodoList: React.FC<IProps> = observer(({ onEdit, todolist}) => {
+const TodoList: React.FC<IProps> = observer(({ onEdit, todolist }) => {
+  const [editing, setEditing] = useState<boolean>(false)
   const defaultTask: TTask = {
     taskTitle: "New Task",
     description: "Description",
@@ -84,7 +85,10 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist}) => {
           inputLength={20}
           onChange={(title) => onEdit({ ...todolist, title })}
         />
-        <Add onClick={() => taskStore.addTask(defaultTask)} />
+        {editing ? null : (
+          <Add onClick={() => taskStore.addTask(defaultTask)
+          } />
+        )}
         <Bin
           className="remove-todolist-button"
           onClick={() => taskStore.removeTodolist(todolist.id)}

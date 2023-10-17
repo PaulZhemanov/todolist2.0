@@ -11,10 +11,11 @@ const Root = styled.div`
   flex-direction: column;
   width: auto;
   height: 27px;
+  /* height:fit-content; */
 `
 interface IProps extends IEditableInputProps {
-onChange?: (str: string) => void
-title?: string
+  onChange?: (str: string) => void
+  title?: string
 }
 
 const EditableTitle: React.FC<IProps> = ({

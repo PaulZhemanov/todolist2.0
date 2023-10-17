@@ -1,7 +1,6 @@
 import React from "react"
 import "./App.css"
 import styled from "@emotion/styled"
-import SizedBox from "@components/SizeBox"
 import Header from "@components/Header"
 import { useStores } from "./stores"
 import Todolist from "./components/Todolist"
