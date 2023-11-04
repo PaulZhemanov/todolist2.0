@@ -44,6 +44,7 @@ const StyledRow = styled(Row)`
   justify-content: space-between;
   align-items: center;
   width: 333px;
+  height: 27px;
 `
 interface IProps {
   task: TTask

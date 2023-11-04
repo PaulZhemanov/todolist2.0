@@ -25,7 +25,10 @@ export default class TaskStore {
     private setTasks = (tasks: Array<TTask>) => this.tasks = tasks
     public addTask = (task: TTask) => this.tasks.push(task)
     public removeTask = (indexTask: number) => this.tasks.splice(indexTask, 1)
-    public editTask = (indexTask: number, task: TTask) => this.tasks[indexTask] = task
+    public editTask = (indexTask: number, task: TTask) => {
+        console.log({indexTask, dfd:task.taskTitle})
+        this.tasks[indexTask] = task
+    }
 
     public todolists: Array<TTodolist> = []
     private setTodolists = (todolists: Array<TTodolist>) => this.todolists = todolists

@@ -11,6 +11,7 @@ const Root = styled.div`
   flex-direction: column;
   width: auto;
   height: 27px;
+
   /* height:fit-content; */
 `
 interface IProps extends IEditableInputProps {
