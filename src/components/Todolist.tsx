@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import React, { useState } from "react"
+import React from "react"
 import bin from "@assets/icons/Bin.svg"
 import SizedBox from "./SizeBox"
 import Task from "./Task"
@@ -8,11 +8,13 @@ import { useStores } from "@stores"
 import { observer } from "mobx-react"
 import addMinIcon from "@assets/icons/AddMin.svg"
 import { TASK_STATUS, TTask, TTodolist } from "@src/stores/TaskStore"
+import { Row } from "./Flex"
 
 const Bin = styled.div`
   background: url(${bin});
   width: 25px;
   height: 25px;
+  justify-content: space-between;
 `
 const Add = styled.div`
   background: url(${addMinIcon});
@@ -42,7 +44,7 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 373px;
-  height: fit-content;
+  /* height: 38px; */
 `
 const TasksContainer = styled.div`
   display: inline-flex;
@@ -65,7 +67,6 @@ interface IProps {
 }
 
 const TodoList: React.FC<IProps> = observer(({ onEdit, todolist }) => {
-  const [editing, setEditing] = useState<boolean>(false)
   const defaultTask: TTask = {
     taskTitle: "New Task",
     description: "Description",
@@ -85,14 +86,7 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist }) => {
           inputLength={20}
           onChange={(title) => onEdit({ ...todolist, title })}
         />
-        {editing ? null : (
-          <Add onClick={() => taskStore.addTask(defaultTask)
-          } />
-        )}
-        <Bin
-          className="remove-todolist-button"
-          onClick={() => taskStore.removeTodolist(todolist.id)}
-        />
+        <Add onClick={() => taskStore.addTask(defaultTask)} />
       </HeaderContainer>
       <SizedBox height={20} />
       <TasksContainer>
@@ -107,6 +101,12 @@ const TodoList: React.FC<IProps> = observer(({ onEdit, todolist }) => {
           ) : null
         )}
       </TasksContainer>
+      <Row justifyContent="flex-end">
+        <Bin
+          className="remove-todolist-button"
+          onClick={() => taskStore.removeTodolist(todolist.id)}
+        />
+      </Row>
     </Root>
   )
 })

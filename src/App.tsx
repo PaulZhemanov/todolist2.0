@@ -2,9 +2,9 @@ import React from "react"
 import "./App.css"
 import styled from "@emotion/styled"
 import Header from "@components/Header"
-import { useStores } from "./stores"
+import { useStores } from "@stores"
 import Todolist from "./components/Todolist"
-import { TTodolist } from "./stores/TaskStore"
+import { TTodolist } from "@stores/TaskStore"
 import { observer } from "mobx-react"
 
 const Root = styled.div`
